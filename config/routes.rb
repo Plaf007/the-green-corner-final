@@ -5,4 +5,33 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  resources :users do
+    resources :addresses, only: [:index, :new, :create]
+    resources :reviews, only: [:index, :new, :create]
+  end
+
+  resources :products do
+    resources :reviews, only: [:index, :new, :create]
+  end
+
+  resources :orders do
+    resources :selected_products, only: [:index, :new, :create]
+  end
+
+  resources :carts do
+    resources :selected_products, only: [:index, :new, :create]
+  end
+
+  resources :recycle_points do
+    resources :addresses, only: [:index, :new, :create]
+    resources :reviews, only: [:index, :new, :create]
+  end
+
+  resources :selected_products, only: [:show, :edit, :update, :destroy]
+
+  resources :reviews, only: [:show, :edit, :update, :destroy]
+
+  resources :addresses, only: [:show, :edit, :update, :destroy]
+
 end

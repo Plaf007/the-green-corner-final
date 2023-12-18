@@ -1,0 +1,2 @@
+class RecyclePointsController < ApplicationController
+end

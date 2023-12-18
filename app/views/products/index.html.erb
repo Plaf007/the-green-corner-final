@@ -1,0 +1,93 @@
+<div class="container mt-3 position-relative">
+  <div class="row">
+    <div class="col-12">
+       <h1 class="title-card">
+        Find the product you want
+        <i class="fas fa-heart" style="font-size: 25px"></i>
+      </h1>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% if @query %>
+        <p>You searched for <strong><%= @query %></strong>. We found <%= @products.count %> products out of our <%= Product.count %> on our website.</p>
+      <% else %>
+        <p>All <%= Product.count %> products.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <% if user_signed_in? %>
+    <h3>Create a Product</h3>
+    <%= link_to "Add a Product", new_product_path, class: "btn btn-primary rounded mb-3" %>
+  <% end %>
+</div>
+
+<div class="container">
+    <%= link_to "Return Home", root_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="container">
+  <div class="row d-flex justify-content-center mt-3">
+    <% @products.each do |product| %>
+      <div class="col-3 mx-3 my-3 shadow p-3 mb-5 rounded card-hover d-flex flex-column">
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-center ms-3">
+            <% if product.photo.present? && product.photo.key.present? %>
+              <%= cl_image_tag product.photo.key, class: 'product-image', height: 200, width: 200, crop: :fill %>
+            <% end %>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <h5><%= product.title %></h5>
+          </div>
+          <div class="d-flex justify-content-center">
+            <p class="product-details"><%= product.details %></p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <p>Category: <%= product.category %></p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="d-flex pe-4 align-items-center">
+              <h6 class="me-2 mb-0">Quantity:</h6>
+              <span><%= product.quantity %></span>
+            </div>
+            <div class="d-flex align-items-center">
+              <h6 class="me-2 mb-0">Price:</h6>
+              <i class="fa-solid fa-dollar-sign"></i>
+              <span><%= product.price %></span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-auto d-flex justify-content-center">
+          <%= link_to "More info", product_path(product), class: "btn btn-primary rounded mb-3" %>
+            <%#= link_to "Add to cart", cart_products_path(@product), class: "btn btn-danger text-white"%>
+          <% if user_signed_in? %>
+            <% if current_user.id != product.user_id %>
+              <form action="/cart_products" method="POST" data-turbo="false">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%= hidden_field_tag :product_id, product.id %>
+                <input type="submit" value="Add to cart", class= "btn btn-danger text-white">
+              </form>
+            <% end  %>
+          <% else %>
+            <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+        <div class="mt-auto d-flex justify-content-center">
+          <% if product.user == current_user %>
+            <%= link_to "Edit", edit_product_path(product), class: "btn btn-secondary text-light rounded mb-3" %>
+            <%= link_to "Remove", product_path(product),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "btn btn-danger text-light rounded mb-3" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

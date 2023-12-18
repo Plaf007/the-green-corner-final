@@ -1,0 +1,23 @@
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 offset-lg-3">
+        <div class="bg-white rounded p-3 shadow">
+          <h3>Create a new product</h3>
+          <%= simple_form_for @product do |f| %>
+            <%= f.input :title, placeholder: 'Product' %>
+            <%= f.input :details, placeholder: "Add details here..." %>
+            <%= f.input :description, placeholder: "Add your description here..." %>
+            <%= f.input :category, placeholder: 1 %>
+            <%= f.input :quantity, placeholder: 1 %>
+            <%= f.input :price, placeholder: 1 %>
+            <%= f.input :virtual_cash, placeholder: 1 %>
+            <%= f.input :photo, as: :file, required: true %>
+            <%= f.submit class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-start my-4">
+      <%= link_to "Return to products", products_path%>
+  </div>

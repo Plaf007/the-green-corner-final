@@ -11,10 +11,10 @@ class Product < ApplicationRecord
   validates :description, :quantity, :price, :photo, presence: true
   validates :description, length: {minimum: 6}
 
-  # include PgSearch::Model
-  # pg_search_scope :search_by_title_and_description,
-  # against: [ :title, :description, :category ],
-  # using: {
-  #   tsearch: { prefix: true } # <-- now `superman batm` will return something!
-  # }
+  include PgSearch::Model
+  pg_search_scope :search_by_title_and_description,
+  against: [ :title, :description, :category ],
+  using: {
+    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  }
 end

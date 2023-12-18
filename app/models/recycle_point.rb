@@ -1,0 +1,2 @@
+class RecyclePoint < ApplicationRecord
+end

@@ -1,49 +1,11 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @carts = Cart.all
-  end
+  before_action :authenticate_user!
+  include SharedFunctionality
 
   def show
-  end
-
-  def new
-    @cart = Cart.new
-  end
-
-  def create
-    @cart = Cart.new(cart_params)
-    if @cart.save
-      redirect_to @cart, notice: 'Cart was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @cart.update(cart_params)
-      redirect_to @cart, notice: 'Cart was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @cart.destroy
-    redirect_to carts_url, notice: 'Cart was successfully destroyed.'
-  end
-
-  private
-
-  def set_cart
-    @cart = Cart.find(params[:id])
-  end
-
-  def cart_params
-    params.require(:cart).permit(:user_id)
+    @cart = current_user.cart || current_user.create_cart
+    @selected_products = @cart.selected_products.includes(:product)
+    @total_due = calculate_total_due(@selected_products)
+    @total_virtual_cash = calculate_total_virtual_cash(@selected_products)
   end
 end

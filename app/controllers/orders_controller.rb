@@ -1,49 +1,57 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  include SharedFunctionality
 
   def index
-    @orders = Order.all
-  end
-
-  def show
-  end
-
-  def new
-    @order = Order.new
+    @orders = current_user.orders
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+    @cart = current_user.cart
+
+    if @cart.selected_products.empty?
+      flash[:alert] = "No se puede crear una orden con el carrito vacío."
+      redirect_to cart_path(@cart)
     else
-      render :new
+      @order = Order.new(user: current_user, status: 0, purchase_date: Date.today)
+
+      if @order.save
+        @cart.selected_products.update_all(
+          selected_productable_type: 'Order',
+          selected_productable_id: @order.id
+        )
+        @cart.destroy
+
+        redirect_to order_path(@order), notice: 'La orden se creó correctamente.'
+      else
+        redirect_to cart_path, alert: 'No se logró crear la orden.'
+      end
     end
   end
 
-  def edit
+  def show
+    @order = current_user.orders.find(params[:id])
+    @selected_products = @order.selected_products.includes(:product)
+    @total_due = calculate_total_due(@selected_products)
+    @total_virtual_cash = calculate_total_virtual_cash(@selected_products)
   end
 
-  def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @order.destroy
-    redirect_to orders_url, notice: 'Order was successfully destroyed.'
-  end
+  helper_method :display_order_status
 
   private
 
-  def set_order
-    @order = Order.find(params[:id])
-  end
-
-  def order_params
-    params.require(:order).permit(:user_id, :purchase_date, :total_due, :status, :virtual_cash)
+  def display_order_status(status)
+    case status
+    when 0
+      'Pendiente'
+    when 1
+      'Despachada'
+    when 2
+      'Entregada'
+    when 3
+      'Cancelada'
+    else
+      'Otro'
+    end
   end
 end

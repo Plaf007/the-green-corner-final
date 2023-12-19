@@ -1,49 +1,69 @@
 class SelectedProductsController < ApplicationController
-  before_action :set_selected_product, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @selected_products = SelectedProduct.all
-  end
-
-  def show
-  end
-
-  def new
-    @selected_product = SelectedProduct.new
-  end
+  before_action :authenticate_user!
 
   def create
-    @selected_product = SelectedProduct.new(selected_product_params)
+    @product = Product.find(params[:product_id])
+    @cart = current_user.cart || current_user.create_cart
+    @selected_product = @cart.selected_products.find_or_initialize_by(product: @product)
+
+    if @selected_product.new_record?
+      @selected_product.assign_attributes(quantity: 1, price: @product.price)
+    else
+      @selected_product.quantity += 1
+    end
+
     if @selected_product.save
-      redirect_to @selected_product, notice: 'SelectedProduct was successfully created.'
+      redirect_to cart_path(@cart), notice: 'El producto se añadió a tu carrito correctamente.'
     else
-      render :new
+      render :new, status: :unprocessable_entity, alert: 'No se logró añadir el producto a tu carrito.'
     end
   end
 
-  def edit
-  end
+  def update_quantity
+    @selected_product = find_selected_product_by_id(params[:id])
 
-  def update
-    if @selected_product.update(selected_product_params)
-      redirect_to @selected_product, notice: 'SelectedProduct was successfully updated.'
+    if @selected_product
+      new_quantity = params[:quantity].to_i
+
+      if new_quantity.positive?
+        @selected_product.update(quantity: new_quantity)
+        flash[:notice] = "Se actualizó la cantidad del producto seleccionado."
+      else
+        @selected_product.destroy
+        flash[:notice] = "Se quitó el producto de tu #{parent_model_name(@selected_product)}."
+      end
     else
-      render :edit
+      flash[:alert] = "No se encontró el producto."
     end
+
+    redirect_to cart_or_order_path
   end
 
   def destroy
-    @selected_product.destroy
-    redirect_to selected_products_url, notice: 'SelectedProduct was successfully destroyed.'
+    @selected_product = find_selected_product_by_id(params[:id])
+
+    if @selected_product
+      @selected_product.destroy
+      flash[:notice] = "Se quitó el producto de tu #{parent_model_name(@selected_product)}."
+    else
+      flash[:alert] = "No se encontró el producto."
+    end
+
+    redirect_to cart_or_order_path
   end
 
   private
 
-  def set_selected_product
-    @selected_product = SelectedProduct.find(params[:id])
+  def find_selected_product_by_id(id)
+    order_selected_product = current_user.orders.joins(selected_products: :product).find_by(selected_products: { id: id })
+    order_selected_product || current_user.cart.selected_products.find_by(id: id)
   end
 
-  def selected_product_params
-    params.require(:selected_product).permit(:quantity, :price, :virtual_cash, :product_id, :selected_productable_id, :selected_productable_type)
+  def parent_model_name(selected_product)
+    selected_product.selected_productable_type == 'Order' ? 'orden' : 'carrito'
+  end
+
+  def cart_or_order_path
+    @selected_product.selected_productable_type == 'Order' ? order_path : cart_path
   end
 end

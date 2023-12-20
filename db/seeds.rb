@@ -11,59 +11,65 @@ RecyclePoint.destroy_all
 User.destroy_all
 Address.destroy_all
 
-# Addresses
-
-address1 = Address.create!(
-  details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
-  latitude: -12.0789164,
-  longitude: -77.0827831
-)
-puts "La address #{address1} se ha creado correctamente"
-
 # Users
 
 user1 = User.create!(
   email: 'leo.diaz.trejo@gmail.com',
   password: '123456',
-  name: 'Leo',
+  first_name: 'Leo',
   last_name: 'Diaz',
   total_virtual_cash: 335.00
 )
 file = URI.open("https://avatars.githubusercontent.com/u/142075557?v=4")
 user1.photo.attach(io: file, filename: "leo.png", content_type: "image/png")
 user1.save!
-puts "El usuario #{user1.name} se a creado correctamente"
+puts "El usuario #{user1.first_name} se a creado correctamente"
+
 user2 = User.create!(
   email: 'antoniovillalobos@gmail.com',
   password: '123456',
-  name: 'Antonio',
+  first_name: 'Antonio',
   last_name: 'Villalobos',
   total_virtual_cash: 435.00
 )
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1676405509/obzjnjjiruvajinkvmsl.jpg")
 user2.photo.attach(io: file, filename: "antonio.png", content_type: "image/png")
 user2.save!
-puts "El usuario #{user2.name} se a creado correctamente"
+puts "El usuario #{user2.first_name} se a creado correctamente"
+
 user3 = User.create!(
   email: 'marco.soria@pucp.edu.pe',
   password: '123456',
-  name: 'Marco',
+  first_name: 'Marco',
   last_name: 'Soria',
   total_virtual_cash: 535.00
 )
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1691789898/y5axo3cnuidqdr4p6cpj.jpg")
 user3.photo.attach(io: file, filename: "marco.png", content_type: "image/png")
 user3.save!
-puts "El usuario #{user3.name} se a creado correctamente"
+puts "El usuario #{user3.first_name} se a creado correctamente"
+
+user4 = User.create!(
+  email: 'curanderow@gmail.com',
+  password: '123456',
+  )
+
+# Addresses
+
+address1 = Address.create!(
+  details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
+  latitude: -12.0789164,
+  longitude: -77.0827831,
+  addressable: user4
+)
+puts "La address #{address1} se ha creado correctamente"
 
 # Recycle points
 
 recycle_point1 = RecyclePoint.create!(
   category: [1,2,3,4],
-  address: address1,
   name: "punto1",
   description: "Primer punto",
-  user: user1
 )
 puts "El punto de reciclaje #{recycle_point1} se ha creado correctamente"
 
@@ -238,10 +244,14 @@ product12.photo.attach(io: file, filename: "mini_garden.png", content_type: "ima
 product12.save!
 puts "El producto #{product12.title} se a creado correctamente"
 
+# Cart
+
+cart = Cart.create!(user: user2)
+
 # Orders
 
 order1 = Order.create!(user: user1, status: 0, purchase_date: Date.today)
-OrderProduct.create!(order: order1, product: product1, quantity: 2, price: product1.price)
-OrderProduct.create!(order: order1, product: product2, quantity: 1, price: product2.price)
+SelectedProduct.create!(selected_productable: cart, quantity: 2, price: product1.price)
+SelectedProduct.create!(selected_productable: order1, quantity: 1, price: product2.price)
 
 puts "La order #{order1} se ha creado correctamente"

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 offset-lg-3">
+        <div class="bg-white rounded p-3 shadow">
+          <h3>Edit your profile</h3>
+          <%= simple_form_for @user do |f| %>
+            <%= f.input :name, placeholder: 'Name' %>
+            <%= f.input :last_name, placeholder: "Last name" %>
+            <%= f.input :email, placeholder: "Email" %>
+             <%= f.input :address, placeholder: "Address" %>
+             <%= f.input :virtual_cash, placeholder: 1 %>
+            <%= f.input :photo, as: :file, required: true %>
+            <%= f.submit class: 'btn btn-primary'%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-start my-4">
+      <%= link_to "Return to profile", user_path%>
+  </div>

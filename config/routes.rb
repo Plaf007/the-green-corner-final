@@ -8,11 +8,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :addresses, only: [:index, :new, :create]
-    resources :reviews, only: [:index, :new, :create]
+    resources :reviews, only: [:new, :create]
   end
 
   resources :products do
-    resources :reviews, only: [:index, :new, :create]
+    resources :reviews, only: [:new, :create]
   end
 
   resources :orders do
@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
   resources :selected_products, only: [:show, :edit, :update, :destroy]
 
-  resources :reviews, only: [:show, :edit, :update, :destroy]
 
-  resources :addresses, only: [:show, :edit, :update, :destroy]
 
 end

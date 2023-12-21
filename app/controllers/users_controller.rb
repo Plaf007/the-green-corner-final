@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @review = Review.new(reviewable: @user)
+    @address = Address.new(addressable: @user)
   end
 
   def new
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_path, notice: 'User was successfully destroyed.'
   end
 
   private
@@ -44,6 +46,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :total_virtual_cash, :avatar, :photo)
+    params.require(:user).permit(:first_name, :last_name, :password, :total_virtual_cash, :photo)
   end
 end

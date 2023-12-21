@@ -7,7 +7,7 @@ class RecyclePointsController < ApplicationController
     #   @recycle_points = @recycle_points.search_by_title_and_description(params[:query])
     # end
   end
-
+  #cambio
   def show
     @address = Address.new(addressable: @recycle_point)
   end

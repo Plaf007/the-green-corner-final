@@ -1,4 +1,13 @@
 class Product < ApplicationRecord
+  enum category: {
+    others: 0,
+    food: 1,
+    personalCare: 2,
+    clothing: 3,
+    cleaning: 4,
+    furniture: 5
+  }
+
   belongs_to :user
 
   has_one_attached :photo
@@ -15,4 +24,5 @@ class Product < ApplicationRecord
   using: {
     tsearch: { prefix: true } # <-- now `superman batm` will return something!
   }
+
 end

@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   has_one_attached :photo
 
   has_many :reviews, as: :reviewable, dependent: :destroy
+  has_many :selected_products, as: :selected_productable, dependent: :destroy
 
   validates :title, uniqueness: true, presence: true
   validates :description, :quantity, :price, presence: true

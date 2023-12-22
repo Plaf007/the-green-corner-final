@@ -79,7 +79,7 @@ product1 = Product.new(
   title: 'Pares Calcetines Bamboo Deportivos',
   description: 'Pack de 12 pares de calcetines cortos, tobilleras, lisos de fibra de Bamboo lo que impide el mal olor.Talla estándar que abarca numero 39 al 45.',
   details: '12 pares de calcetines - Hechos con fibra de bamboo',
-  category: [1],
+  category: "others",
   quantity: 100,
   price: 15.99,
   user: user1,
@@ -93,7 +93,7 @@ product2 = Product.new(
   title: 'Toallita Húmeda 99.9% Agua Biodegradables',
   description: 'Cada toallita está hecha de tela hipoalergénica de fibras de bamboo con aceites esenciales. Estas wipes son orgánicas, hipoalergénicas, compostables en casa y 100% biodegradables. Libres de químicos nocivos y alcohol. Además, traen en su empaque una tapa dispensadora que las hace super cómodas para cambiar a tu bebé',
   details: 'Toallitas de fibra de bamboo - Hipoalergénicas',
-  category: [2],
+  category: "others",
   quantity: 50,
   price: 20.99,
   user: user2,
@@ -107,7 +107,7 @@ product3 = Product.new(
   title: 'Compostera',
   description: 'Para que reciclen gran parte de sus desechos y produzcan su propio abono. Incluye : Vermicompostera, Manual PDF con todos los cuidados',
   details: 'Compostera de madera reciclada',
-  category: [0, 2],
+  category: "others",
   quantity: 10,
   price: 88.99,
   user: user3,
@@ -121,7 +121,7 @@ product4 = Product.new(
   title: 'Cepillos de dientes de bamboo',
   description: 'Pack 12 unidades cepillo de dientes bamboo cerdas de fibra de carbón. Ecológico, biodegradable.',
   details: 'Cepillos de dientes de bamboo - Bíodegradable',
-  category: [1],
+  category: "others",
   quantity: 15,
   price: 12.99,
   user: user1,
@@ -135,7 +135,7 @@ product5 = Product.new(
   title: 'Zapatero Y Banco De bamboo',
   description: 'Zapatero y banco de bamboo, el producto viene separado en partes, con instrucciones para su armado',
   details: 'Zapatero y banco de bamboo',
-  category: [3],
+  category: "others",
   quantity: 15,
   price: 40.99,
   user: user2,
@@ -149,7 +149,7 @@ product6 = Product.new(
   title: 'Bolsas De Basura Biodegradable',
   description: 'Bolsa de Basura Ecológica Pequeña para Escritorio o Baño. 100 unidades por rollo. 37 x 51 cms.',
   details: 'Bolsa de Basura bíodegradable',
-  category: [1],
+  category: "others",
   quantity: 15,
   price: 7.00,
   user: user1,
@@ -163,7 +163,7 @@ product7 = Product.new(
   title: 'Set Envoltorio Reutilizable Algodón Y Cera De Abeja',
   description: 'Envoltorios de tela de algodón con cera de abeja que permite envolver fuentes o alimentos para mantener su condición. Son reutilizables y una vez que pierden su vida útil los puedes compostar.',
   details: 'Envoltorios reutilizables - Bíodegradables',
-  category: [1],
+  category: "others",
   quantity: 18,
   price: 9.00,
   user: user1,
@@ -177,7 +177,7 @@ product8 = Product.new(
   title: 'Chocolate Semi Bitter 63% Cacao',
   description: 'Chocolate en lenteja. Apto para el consumo de personas veganas.',
   details: 'Chocolate con alto porcentaje de cacao',
-  category: [2],
+  category: "others",
   quantity: 30,
   price: 15.00,
   user: user2,
@@ -191,7 +191,7 @@ product9 = Product.new(
   title: 'Leche De Coco Orgánica 400 Ml',
   description: 'Leche de coco, obtenida a partir de cocos frescos.',
   details: 'Leche de Coco Orgánica',
-  category: [3],
+  category: "others",
   quantity: 23,
   price: 18.00,
   user: user3,
@@ -205,7 +205,7 @@ product10 = Product.new(
   title: 'Hisopos De Algodón Con Varita De Bambú',
   description: 'Hechas de algodón y madera de bambú, biodegradables y compostables.',
   details: 'Hisopos de algodón y bamboo',
-  category: [0],
+  category: "others",
   quantity: 20,
   price: 5.00,
   user: user1,
@@ -219,7 +219,7 @@ product11 = Product.new(
   title: 'Hilo Dental Dobakaru Origen Vegetal',
   description: 'Hilo Dental 100% PLA (origen vegetal) con cera de candelilla y Xylitol natural, sabor a menta.',
   details: 'Hilo dental hecho con productos naturales',
-  category: [10],
+  category: "others",
   quantity: 15,
   price: 10.00,
   user: user2,
@@ -233,7 +233,7 @@ product12 = Product.new(
   title: 'Minigarden Para Huerta Vertical Y Muro Verde',
   description: 'Fabricado en polipropileno copolímero de alta resistencia y contiene aditivos que proporcionan protección UV.',
   details: 'Huerta Vertival hecho con productos naturales',
-  category: [1],
+  category: "others",
   quantity: 21,
   price: 7.00,
   user: user1,
@@ -251,7 +251,10 @@ cart = Cart.create!(user: user2)
 # Orders
 
 order1 = Order.create!(user: user1, status: 0, purchase_date: Date.today)
-SelectedProduct.create!(selected_productable: cart, quantity: 2, price: product1.price)
-SelectedProduct.create!(selected_productable: order1, quantity: 1, price: product2.price)
+# SelectedProduct.create!(selected_productable: cart, product: product12, quantity: 2, price: product1.price)
+# SelectedProduct.create!(selected_productable: order1, product: product12, quantity: 1, price: product2.price)
+
+product12.selected_products.create(selected_productable: cart, quantity: 2, price: product12.price)
+product12.selected_products.create(selected_productable: order1, quantity: 2, price: product12.price)
 
 puts "La order #{order1} se ha creado correctamente"

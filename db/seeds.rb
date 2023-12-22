@@ -67,7 +67,7 @@ puts "La address #{address1} se ha creado correctamente"
 # Recycle points
 
 recycle_point1 = RecyclePoint.create!(
-  category: [1,2,3,4],
+  category: 1,
   name: "punto1",
   description: "Primer punto",
 )

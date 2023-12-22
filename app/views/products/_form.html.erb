@@ -7,7 +7,7 @@
             <%= f.input :title, placeholder: 'Product' %>
             <%= f.input :details, placeholder: "Add details here..." %>
             <%= f.input :description, placeholder: "Add your description here..." %>
-            <%= f.input :category, placeholder: 1 %>
+            <%= f.input :category, collection: Product.categories.keys%>
             <%= f.input :quantity, placeholder: 1 %>
             <%= f.input :price, placeholder: 1 %>
             <%= f.input :virtual_cash, placeholder: 1 %>

@@ -25,6 +25,19 @@
 
 
 
+    <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: products_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control col-8",
+              placeholder: "Type a product"
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-secondary"  %>
+      <% end %>
+    </div>
+  </div>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>

@@ -1,11 +1,11 @@
 class Product < ApplicationRecord
   enum category: {
-    others: 0,
-    food: 1,
-    personalCare: 2,
-    clothing: 3,
-    cleaning: 4,
-    furniture: 5
+    plastic: 0,
+    glass: 1,
+    wood: 2,
+    aluminium: 3,
+    wasteElectrical: 4,
+    compostable: 5
   }
 
   belongs_to :user

@@ -30,13 +30,13 @@
 </div>
 
 <div class="container">
-    <%= link_to "Return Home", root_path, class: "btn btn-outline-secondary btn-sm" %>
+    <%= link_to "Return Home", root_path, class: "btn btn-outline-secondary btn-sm bg-white" %>
 </div>
 
 <div class="container">
   <div class="row d-flex justify-content-center mt-3">
     <% @products.each do |product| %>
-      <div class="col-3 mx-3 my-3 shadow p-3 mb-5 rounded card-hover d-flex flex-column">
+      <div class="col-3 mx-3 my-3 shadow p-3 mb-5 rounded card-hover d-flex flex-column bg-white">
         <div class="flex-grow-1">
           <div class="d-flex justify-content-center ms-3">
             <% if product.photo.present? && product.photo.key.present? %>

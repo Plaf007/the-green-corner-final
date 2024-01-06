@@ -1,0 +1,31 @@
+.card-hover:hover {
+  transform: scale(1.03);
+  transition: transform 0.8s ease-in-out, box-shadow 1.0s ease-in-out;
+  box-shadow: 0 10px 20px #113E34;
+}
+
+.card-hover {
+  border: 1px solid red;
+  transition: transform 0.9s ease, box-shadow 0.9s ease;
+  /* Se aplica la transición al estado normal */
+}
+
+.btn-custom {
+  background-color: #98FB98;
+  /* Un tono de verde claro */
+  border-color: #98FB98;
+  transition: background-color 1.0s, border-color 1.0s;
+}
+
+.btn-custom:hover {
+  background-color: #8FBC8F;
+  /* Un poco más oscuro al hacer hover */
+  border-color: #8FBC8F;
+}
+
+.card-container {
+  max-width: 1200px;
+  /* o el ancho máximo que prefieras */
+  margin-left: auto;
+  margin-right: auto;
+}

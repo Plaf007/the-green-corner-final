@@ -1,0 +1,35 @@
+.content-home {
+  padding-top: 70px;
+}
+.body-background {
+  position: relative;
+  z-index: 0;
+}
+
+.body-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url('background_pattern_image.png') repeat fixed;
+  background-size: 5%;
+  opacity: 70%;
+  /* Ajusta la opacidad según necesites */
+  z-index: -1;
+}
+.content-home header h1,
+.content-home header p.lead
+ {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px black;
+}
+.content-home h2 {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 1.9rem;
+  text-shadow: 2px 2px 4px black;
+}

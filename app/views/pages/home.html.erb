@@ -1,2 +1,38 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-5 content-home">
+  <header class="text-center mb-5">
+    <h1>Bienvenidos a Nuestra Tienda</h1>
+    <p class="lead">Encuentra lo que necesitas para tu próxima aventura.</p>
+  </header>
+
+  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel con imágenes destacadas -->
+
+  </div>
+  <section class="my-5">
+
+    <!-- Contenedor para las tarjetas -->
+    <div class="card-container">
+      <div class="content-home">
+        <h2>Productos Destacados</h2>
+      </div>
+      <div class="row justify-content-center">
+        <% @products.each do |product| %>
+          <!-- Ajusta las columnas para que sean más pequeñas, ej. usando col-md-3 o col-sm -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 d-flex flex-column card-hover border-0 rounded">
+              <%= image_tag product.photo, class: 'card-img-top img-fluid rounded-top', style: 'object-fit: cover; height: 150px;' if product.photo.attached? %>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title"><%= product.title %></h5>
+                <p class="card-text flex-grow-1"><%= product.description %></p>
+                <p class="card-text"><strong>Precio:</strong> <%= number_to_currency(product.price) %></p>
+              </div>
+              <div class="mt-auto p-3">
+                <%= link_to 'Ver Producto', product_path(product), class: 'btn btn-custom' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>

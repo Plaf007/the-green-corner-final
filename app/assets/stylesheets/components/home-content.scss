@@ -15,26 +15,72 @@
   left: 0;
   background: url('background_pattern_image.png') repeat fixed;
   background-size: 5%;
-  opacity: 70%;
+  opacity: 30%;
   /* Ajusta la opacidad según necesites */
   z-index: -1;
 }
 .content-home header h1,
 .content-home header p.lead
  {
-  color: #FFFFFF;
+  color: #FE8300;
   font-weight: bold;
   font-size: 3rem;
   text-shadow: 2px 2px 4px black;
+
 }
 .content-home h2 {
-  color: #FFFFFF;
+  color: #2dc241;
   font-weight: bold;
   font-size: 1.9rem;
-  text-shadow: 2px 2px 4px black;
+  text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #1d793a;
+    /* Color del borde */
 }
 
 .content-user {
 padding-top: 150px;
 padding-bottom: 150px;
+}
+.mark-text {
+  color: transparent;
+  font-family: 'Bree Serif', serif;
+  -webkit-text-stroke: 0.5px #1d793a;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ver-mas {
+  display: none;
+}
+
+.btn-custom {
+  font-size: 0.9em;
+  /* Hace el texto más pequeño */
+  border-radius: 25px;
+  /* Da contornos redondos al botón */
+  padding: 5px 10px;
+  /* Reduce el relleno para que el botón sea más pequeño */
+}
+
+.card-body {
+  position: relative;
+  /* Establece la posición relativa para el posicionamiento absoluto del botón */
+}
+
+.ver-mas {
+  position: absolute;
+  /* Posiciona el botón de manera absoluta dentro de .card-body */
+  right: 10px;
+  /* Alinea el botón hacia la derecha con un margen */
+  bottom: 10px;
+  /* Alinea el botón hacia abajo con un margen */
 }

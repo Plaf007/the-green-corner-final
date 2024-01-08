@@ -1,94 +1,68 @@
 
-<div class="container">
 
-  <div class="container my-2">
-      <div>
-          <div class="flex">
-            <div class="d-flex justify-content-start mt-3">
-              <h4 ><%= @product.title %></h4>
-            </div>
-            <div class="d-flex justify-content-start ms-3">
-              <%if @product.photo.attached? %>
-                <%= cl_image_tag @product.photo.key, class: 'product-image', height: 200, width: 200, crop: :fill  %>
-              <%else  %>
-                <%=image_tag "imgnotavailable.png"  %>
-              <%end %>
-            </div>
-            <div class="d-flex justify-content-start">
-              <p class="product-details"><%= @product.details %></p>
-            </div>
-            <div class="d-flex justify-content-start">
-              <p class="product-description"><%= @product.description %></p>
-            </div>
-            <div class="d-flex justify-content-start">
-            <p>Category: <%= @product.category %></p>
-          </div>
-            <div class="d-flex">
-              <div>
-                <h6 class="me-2 mb-0">Quantity:</h6>
-                <span><%= @product.quantity %></span>
-              </div>
-              <div>
-                <h6 class="me-2 mb-0">Price:</h6>
-                <i class="fa-solid fa-dollar-sign"></i>
-                <span><%= @product.price %></span>
-              </div>
-              <div>
-                <h6 class="me-2 mb-0">Virtual Cash:</h6>
-                <i class="fa-solid fa-dollar-sign"></i>
-                <span><%= @product.virtual_cash %></span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="d-flex justify-content-between my-3">
-          <div>
-            <%#= link_to "Add to cart", cart_products_path(@product), class: "btn btn-danger text-white"%>
-            <% if user_signed_in?%>
-              <% if current_user.id != @product.user_id %>
-              <form action="/cart_products" method="POST" data-turbo="false">
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                <%= hidden_field_tag :product_id, @product.id %>
-                <input type="submit" value="Add to cart", class= "btn btn-danger text-white">
-              </form>
-              <% end  %>
-            <% else %>
-              <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-primary" %>
-            <% end %>
-          </div>
-      </div>
-      <div>
-            <%= link_to "Return to products", products_path %>
-      </div>
-      <hr class="my-2">
+<div class="container content-center show-products">
+  <%= link_to "Return to Products", products_path, class: "btn btn-return btn-m " %>
+  <%= link_to "Return Home", root_path, class: "btn btn-return btn-m my-2" %>
 
-      <div class="row">
-      <div class="col-12 col-sm-6">
-        <h3>Reviews</h3>
-        <% if @product.reviews.empty? %>
-          <small><em class="text-muted">Be the first one to review this product</em></small>
-        <% end %>
+  <div class="row shadow p-3 mb-5 bg-white rounded">
+    <div class="col-md-6 d-flex justify-content-center align-items-center">
+      <% if @product.photo.attached? %>
+        <%= cl_image_tag @product.photo.key, class: 'img-fluid', height: 300, width: 300, crop: :fill %>
+      <% else %>
+        <%= image_tag "imgnotavailable.png", class: 'img-fluid' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <h2><%= @product.title %></h2>
+      <p><strong>Details:</strong> <%= @product.details %></p>
+      <p><strong>Description:</strong> <%= @product.description %></p>
+      <p><strong>Category:</strong> <%= @product.category %></p>
+      <p><strong>Quantity:</strong> <%= @product.quantity %></p>
+      <p><strong>Price:</strong> <%= number_to_currency(@product.price) %></p>
+      <p><strong>Virtual Cash:</strong> <%= @product.virtual_cash %></p>
+
+      <% if user_signed_in?%>
+        <% if current_user.id != @product.user_id %>
+          <form action="/cart_products" method="POST" data-turbo="false">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= hidden_field_tag :product_id, @product.id %>
+            <input type="submit" value="Add to cart", class= "btn btn-danger  btn-custom">
+          </form>
+        <% end  %>
+        <% else %>
+           <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-primary btn-custom" %>
+
+     <% end %>
+    </div>
+  </div>
+
+  <div class="card shadow mb-5 bg-white rounded">
+    <div class="card-body">
+      <h3>Reviews</h3>
+      <% if @product.reviews.empty? %>
+        <p class="text-muted">Be the first one to review this product</p>
+      <% else %>
         <% @product.reviews.each do |review| %>
-          <div>
-            <%= review.rating.times do %>
-              <i class="fas fa-star star-yellow"></i>
-            <% end %>
-            <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-            <p class="mb-0"><%= review.comment %></p>
-          </div>
-          <hr>
-        <% end %>
-      </div>
-      <div class="col-12 col-sm-6">
-        <div class="bg-white rounded p-3">
-              <h5>Add your review</h5>
-              <%= simple_form_for [@product, @review] do |f| %>
-                <%= f.input :comment, placeholder: "Add your review here..." %>
-                <%= f.input :rating, as: :select, collection: (1..5), required: true, label: false, input_html: { data: { controller: "star-rating" } } %>
-                <%= f.submit class: "btn btn-primary mt-2" %>
+          <div class="review">
+            <div class="rating">
+              <% review.rating.times do %>
+                <i class="fa fa-star"></i>
               <% end %>
-        </div>
-      </div>
+            </div>
+            <p><%= review.comment %></p>
+            <small><%= time_ago_in_words(review.created_at) %> ago</small>
+            <hr>
+          </div>
+        <% end %>
+      <% end %>
+
+      <h5>Add your review</h5>
+      <%= simple_form_for [@product, Review.new] do |f| %>
+        <%= f.input :comment, placeholder: "Add your review here..." %>
+        <%= f.input :rating, as: :select, collection: 1..5, prompt: "Choose a rating" %>
+        <%= f.submit "Submit Review", class: "btn btn-custom" %>
+      <% end %>
     </div>
   </div>
 </div>

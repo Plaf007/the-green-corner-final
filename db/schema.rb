@@ -107,11 +107,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_19_235518) do
     t.integer "quantity"
     t.decimal "price"
     t.decimal "virtual_cash"
+    t.bigint "product_id", null: false
     t.string "selected_productable_type", null: false
     t.bigint "selected_productable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_id"
     t.index ["product_id"], name: "index_selected_products_on_product_id"
     t.index ["selected_productable_type", "selected_productable_id"], name: "index_selected_products_on_selected_productable"
   end

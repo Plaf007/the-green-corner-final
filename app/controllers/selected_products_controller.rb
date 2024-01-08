@@ -4,7 +4,7 @@ class SelectedProductsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @cart = current_user.cart || current_user.create_cart
-    @selected_product = @cart.selected_products.find_or_initialize_by(product: @product)
+    @selected_product = @cart.selected_products.find_or_initialize_by(selected_productable: @product)
 
     if @selected_product.new_record?
       @selected_product.assign_attributes(quantity: 1, price: @product.price)

@@ -1,7 +1,7 @@
 <div class="navbar py-0 navbar-expand-sm navbar-light navbar-lewagon  fixed-top" >
   <div class="container-fluid shadow p-2  bg-white   rounded">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag asset_path("logo.png"), alt: "Logo", class: "img-fluid custom-logo-size", style: "width: 80px;" %>
+      <%= image_tag asset_path("logo3.png"), alt: "Logo", class: "img-fluid custom-logo-size", style: "width: 80px;" %>
     <% end %>
 
 
@@ -10,23 +10,8 @@
   </button>
 
 
-  <div class="row justify-content-left">
-    <div class="col-sm-8 my-3">
-      <%= form_with url: products_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "form-control col-8",
-              placeholder: "Type a product"
-          %>
-        <%= submit_tag "Search", name: "", class: "btn btn-secondary"  %>
-      <% end %>
-    </div>
-  </div>
-
-
-
     <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
+    <div class="col-sm-8 my-3 w-100">
       <%= form_with url: products_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -45,7 +30,7 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Products", root_path, class: "nav-link" %>
+            <%= link_to "Products", products_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Cart", "/carts/:id", class: "nav-link" %>

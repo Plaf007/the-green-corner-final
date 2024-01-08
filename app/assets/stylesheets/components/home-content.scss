@@ -64,23 +64,19 @@ padding-bottom: 150px;
 
 .btn-custom {
   font-size: 0.9em;
-  /* Hace el texto más pequeño */
   border-radius: 25px;
-  /* Da contornos redondos al botón */
   padding: 5px 10px;
-  /* Reduce el relleno para que el botón sea más pequeño */
+
 }
 
 .card-body {
   position: relative;
-  /* Establece la posición relativa para el posicionamiento absoluto del botón */
+
 }
 
 .ver-mas {
   position: absolute;
-  /* Posiciona el botón de manera absoluta dentro de .card-body */
   right: 10px;
-  /* Alinea el botón hacia la derecha con un margen */
   bottom: 10px;
-  /* Alinea el botón hacia abajo con un margen */
+
 }

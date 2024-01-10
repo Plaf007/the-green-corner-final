@@ -76,7 +76,7 @@
               </form>
             <% end  %>
           <% else %>
-            <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-custom" %>
+            <%= link_to "Add to cart", cart_selected_products_path(), class: "btn btn-custom" %>
           <% end %>
 
           <% if product.user == current_user %>

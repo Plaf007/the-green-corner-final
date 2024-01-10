@@ -69,14 +69,14 @@
             <%#= link_to "Add to cart", cart_products_path(@product), class: "btn btn-danger text-white"%>
           <% if user_signed_in? %>
             <% if current_user.id != product.user_id %>
-              <form action="/carts/<%= current_user.cart.id %>/selected_products" method="POST" data-turbo="false">
+              <form action="/selected_products" method="POST" data-turbo="false">
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                 <%= hidden_field_tag :product_id, product.id %>
                 <input type="submit" value="Add to cart", class= "btn btn-custom">
               </form>
             <% end  %>
           <% else %>
-            <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-custom" %>
+            <%= link_to "Add to cart", selected_products_path, class: "btn btn-custom" %>
           <% end %>
 
           <% if product.user == current_user %>

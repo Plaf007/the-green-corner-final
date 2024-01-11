@@ -5,7 +5,8 @@ class Product < ApplicationRecord
     wood: 2,
     aluminium: 3,
     wasteElectrical: 4,
-    compostable: 5
+    compostable: 5,
+    others: 6
   }
 
   belongs_to :user

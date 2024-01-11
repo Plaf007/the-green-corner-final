@@ -15,6 +15,6 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   def create_cart
-    self.cart = Cart.new
+    self.cart = Cart.create
   end
 end

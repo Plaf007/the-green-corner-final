@@ -4,7 +4,7 @@
   <%= link_to "Return to Products", products_path, class: "btn btn-return btn-m " %>
   <%= link_to "Return Home", root_path, class: "btn btn-return btn-m my-2" %>
 
-  <div class="row shadow p-3 mb-5 bg-white rounded">
+  <div class="row shadow p-3 mb-5 bg-white rounded-4 custom-card-background card-shadow">
     <div class="col-md-6 d-flex justify-content-center align-items-center">
       <% if @product.photo.attached? %>
         <%= cl_image_tag @product.photo.key, class: 'img-fluid', height: 300, width: 300, crop: :fill %>
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="card shadow mb-5 bg-white rounded">
+  <div class="card shadow mb-5 bg-white rounded-4 custom-card-background">
     <div class="card-body">
       <h3>Reviews</h3>
       <% if @product.reviews.empty? %>

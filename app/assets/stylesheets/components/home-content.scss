@@ -44,6 +44,16 @@
 padding-top: 150px;
 padding-bottom: 150px;
 }
+
+.card-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.content-session {
+  padding-top: 200px;
+  padding-bottom: 180px;
+}
+
 .mark-text {
   color: transparent;
   font-family: 'Bree Serif', serif;
@@ -60,6 +70,7 @@ padding-bottom: 150px;
 
 .ver-mas {
   display: none;
+  color: #1d793a;
 }
 
 .btn-custom {
@@ -79,4 +90,25 @@ padding-bottom: 150px;
   right: 10px;
   bottom: 10px;
 
+}
+html,
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  flex-shrink: 0;
+  /* Esto asegura que el footer no se encoge */
 }

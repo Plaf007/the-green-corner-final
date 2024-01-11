@@ -22,69 +22,55 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container pt-3">
   <% if user_signed_in? %>
-    <h3>Create a Product</h3>
     <%= link_to "Add a Product", new_product_path, class: "btn btn-danger mb-1" %>
   <% end %>
 </div>
 
-<div class="container">
+<div class="container pt-1">
     <%= link_to "Return Home", root_path, class: "btn btn-return btn-m" %>
 </div>
 
-<div class="container">
-  <div class="row d-flex justify-content-center mt-3">
-    <% @products.each do |product| %>
-      <div class="col-3 mx-3 my-3 shadow p-3 mb-5 rounded card-hover d-flex flex-column bg-white">
-        <div class="flex-grow-1">
-          <div class="d-flex justify-content-center ms-3">
-            <% if product.photo.present? && product.photo.key.present? %>
-              <%= cl_image_tag product.photo.key, class: 'product-image', height: 200, width: 200, crop: :fill %>
-            <% end %>
-          </div>
-          <div class="d-flex justify-content-center mt-3">
-            <h5><%= product.title %></h5>
-          </div>
-          <div class="d-flex justify-content-center">
-            <p class="product-details"><%= product.details %></p>
-          </div>
-          <div class="d-flex justify-content-center">
-            <p>Category: <%= product.category %></p>
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="d-flex pe-4 align-items-center">
-              <h6 class="me-2 mb-0">Quantity:</h6>
-              <span><%= product.quantity %></span>
-            </div>
-            <div class="d-flex align-items-center">
-              <h6 class="me-2 mb-0">Price:</h6>
-              <i class="fa-solid fa-dollar-sign"></i>
-              <span><%= product.price %></span>
-            </div>
-          </div>
-        </div>
-        <div class="mt-auto d-flex justify-content-center mt-3">
-          <%= link_to "More info", product_path(product), class: "btn btn-custom me-2" %>
+<div class="container pt-3">
+  <div class="row justify-content-center pb-5">
+        <% @products.each do |product| %>
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4 rounded-4 custom-card-background card-hover m-0.5">
+            <div class="card h-100 d-flex flex-column border-0 rounded-4">
+              <%= image_tag product.photo, class: 'card-img-top  rounded-top-4', style: 'object-fit: cover; height: 150px;' if product.photo.attached? %>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title"><%= product.title %></h5>
+                <p class="card-text flex-grow-1"><%= product.description %></p>
+                <%= link_to 'Ver más', product_path(product), class: 'ver-mas' %>
+                <p class="card-text"><strong>Precio:</strong> <%= number_to_currency(product.price) %></p>
+              </div>
+              <div class="mt-auto p-3">
+                <%= link_to 'Ver Producto', product_path(product), class: 'btn btn-custom' %>
             <%#= link_to "Add to cart", cart_products_path(@product), class: "btn btn-danger text-white"%>
-          <% if user_signed_in? %>
-            <% if current_user.id != product.user_id %>
-              <form action="/selected_products" method="POST" data-turbo="false">
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                <%= hidden_field_tag :product_id, product.id %>
-                <input type="submit" value="Add to cart", class= "btn btn-custom">
-              </form>
-            <% end  %>
-          <% else %>
-            <%= link_to "Add to cart", selected_products_path, class: "btn btn-custom" %>
-          <% end %>
+                <% if user_signed_in? %>
+                  <% if current_user.id != product.user_id %>
+                    <form action="/selected_products" method="POST" data-turbo="false">
+                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                      <%= hidden_field_tag :product_id, product.id %>
+                      <div class="pt-1">
+                        <input type="submit" value="Add to cart", class= "btn btn-custom">
+                      </div>
+                    </form>
+                  <% end  %>
 
-          <% if product.user == current_user %>
-            <%= link_to "Edit", edit_product_path(product), class: "btn btn-custom me-2" %>
-            <%= link_to "Remove", product_path(product),
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "btn btn-custom  " %>
-          <% end %>
+                    <% else %>
+                      <div class=" pt-1">
+                        <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-custom" %>
+                      </div>
+                    <% end %>
+
+                <% if product.user == current_user %>
+                  <%= link_to "Edit", edit_product_path(product), class: "btn btn-custom me-1" %>
+                  <%= link_to "Remove", product_path(product),
+                      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: "btn btn-custom  " %>
+                <% end %>
+              </div>
         </div>
       </div>
     <% end %>

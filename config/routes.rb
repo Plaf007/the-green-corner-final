@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+  sessions: 'users/sessions'
+}
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -19,17 +21,17 @@ Rails.application.routes.draw do
     resources :selected_products, only: [:index, :new, :create]
   end
 
-  resources :carts do
-    resources :selected_products, only: [:index, :new, :create]
-  end
+  # resources :carts do
+    # resources :selected_products, only: [:index, :new, :create]
+  # end
 
   resources :recycle_points do
     resources :addresses, only: [:index, :new, :create]
     resources :reviews, only: [:index, :new, :create]
   end
 
-  resources :selected_products, only: [:show, :edit, :update, :destroy]
-
+  resources :selected_products
+  resources :carts
 
 
 end

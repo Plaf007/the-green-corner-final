@@ -7,7 +7,7 @@ class SelectedProductsController < ApplicationController
     @selected_product = @cart.selected_products.find_or_initialize_by(selected_productable: @product)
 
     if @selected_product.new_record?
-      @selected_product.assign_attributes(quantity: 1, price: @product.price)
+      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product)
     else
       @selected_product.quantity += 1
     end

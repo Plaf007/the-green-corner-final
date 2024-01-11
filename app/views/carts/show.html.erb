@@ -14,33 +14,33 @@
         <div class="row g-0">
           <div class="col-md-4 r">
             <% if selected_product.product.photo.attached? %>
-              <%= image_tag cart.selected_product.photo, class: 'product-image', height: 200, width: 300, crop: :fill  %>
+              <%= image_tag selected_product.product.photo, class: 'product-image', height: 200, width: 300, crop: :fill  %>
             <% else %>
               <p>No image available</p>
             <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title"><%= cart.selected_products.product.title %></h5>
-              <p class="product-description"><%= cart.selected_products.product.description %></p>
+              <h5 class="card-title"><%= selected_product.product.title %></h5>
+              <p class="product-description"><%= selected_product.product.description %></p>
               <p class="card-text">
-                <small class="text-muted">Part number: <%= cart.selected_products.product.id %></small>
+                <small class="text-muted">Part number: <%= selected_product.product.id %></small>
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <label class="text-muted">Precio:</label>
-                  <span class="text-muted"><%= number_to_currency(cart.selected_products.price) %></span>
+                  <span class="text-muted"><%= number_to_currency(selected_product.price) %></span>
                 </div>
                 <div>
                   <label class="text-muted">Total:</label>
                   <span class="text-muted"><%= @total_due %></span>
                 </div>
                 <div>
-                  <label for="quantity-<%= cart.selected_products.id %>" class="text-muted">Cantidad:</label>
-                  <input id="quantity-<%= cart.selected_products.id %>" class="form-control quantity-input" type="number" value="<%= cart.selected_products.quantity %>" min="0" name="product_quantity">
+                  <label for="quantity-<%= selected_product.id %>" class="text-muted">Cantidad:</label>
+                  <input id="quantity-<%= selected_product.id %>" class="form-control quantity-input" type="number" value="<%= selected_product.quantity %>" min="0" name="product_quantity">
                 </div>
                 <div>
-                  <%= button_to 'Update', update_product_path(product_id: cart.selected_products.product.id), class: "btn btn-outline-secondary btn-sm" %>
+                  <%# <%= button_to 'Update', update_product_path(product_id: selected_product.product.id), class: "btn btn-outline-secondary btn-sm" %> %>
                   <%= link_to 'Remove', "#", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary btn-sm" %>
                 </div>
               </div>

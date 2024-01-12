@@ -4,14 +4,14 @@ class SelectedProductsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @cart = current_user.cart || current_user.create_cart
-    @selected_product = @cart.selected_products.find_or_initialize_by(selected_productable: @product)
+    @selected_product = @cart.selected_products.find_by(product: @product)
 
-    if @selected_product.new_record?
-      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product)
-    else
+    if @selected_product
       @selected_product.quantity += 1
+    else
+      @selected_product = @cart.selected_products.create(selected_productable: @product)
+      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product, virtual_cash: @virtual_cash, cart_id: @cart.id)
     end
-
     if @selected_product.save
       redirect_to cart_path(@cart), notice: 'El producto se añadió a tu carrito correctamente.'
     else
@@ -20,23 +20,18 @@ class SelectedProductsController < ApplicationController
   end
 
   def update_quantity
-    @selected_product = find_selected_product_by_id(params[:id])
-
-    if @selected_product
-      new_quantity = params[:quantity].to_i
-
-      if new_quantity.positive?
-        @selected_product.update(quantity: new_quantity)
-        flash[:notice] = "Se actualizó la cantidad del producto seleccionado."
-      else
-        @selected_product.destroy
-        flash[:notice] = "Se quitó el producto de tu #{parent_model_name(@selected_product)}."
-      end
+    @cart = current_user.cart
+    @selected_product = @cart.selected_products.find(params[:product].to_i)
+    new_quantity = params[:selected_product][:quantity].to_i
+    if new_quantity.positive?
+      @selected_product.update(quantity: new_quantity)
+      flash[:notice] = "Se actualizó la cantidad del producto seleccionado."
     else
-      flash[:alert] = "No se encontró el producto."
+      @selected_product.destroy
+      flash[:notice] = "Se quitó el producto de tu #{parent_model_name(@selected_product)}."
     end
 
-    redirect_to cart_or_order_path
+    redirect_to cart_or_order_path(@selected_product)
   end
 
   def destroy
@@ -49,7 +44,7 @@ class SelectedProductsController < ApplicationController
       flash[:alert] = "No se encontró el producto."
     end
 
-    redirect_to cart_or_order_path
+    redirect_to cart_or_order_path(@selected_product)
   end
 
   private
@@ -63,7 +58,7 @@ class SelectedProductsController < ApplicationController
     selected_product.selected_productable_type == 'Order' ? 'orden' : 'carrito'
   end
 
-  def cart_or_order_path
-    @selected_product.selected_productable_type == 'Order' ? order_path : cart_path
+  def cart_or_order_path(selected_product)
+    selected_product.selected_productable_type == 'Order' ? order_path(selected_product.order_id) : cart_path(selected_product.cart_id)
   end
 end

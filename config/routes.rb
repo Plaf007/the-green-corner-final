@@ -33,5 +33,5 @@ Rails.application.routes.draw do
   resources :selected_products
   resources :carts
 
-
+  post "carts/update_product", to: "selected_products#update_quantity"
 end

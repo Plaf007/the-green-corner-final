@@ -33,15 +33,20 @@
                 </div>
                 <div>
                   <label class="text-muted">Total:</label>
-                  <span class="text-muted"><%= @total_due %></span>
+                  <span class="text-muted"><%= number_to_currency(selected_product.calculate_total_due([selected_product])) %></span>
                 </div>
                 <div>
                   <label for="quantity-<%= selected_product.id %>" class="text-muted">Cantidad:</label>
-                  <input id="quantity-<%= selected_product.id %>" class="form-control quantity-input" type="number" value="<%= selected_product.quantity %>" min="0" name="product_quantity">
+                  <%= form_with model: selected_product, url: carts_update_product_path(product: selected_product), method: :post, local: true do |form| %>
+                   <%= form.hidden_field :_method, value: "put" %>
+                    <%= form.number_field :quantity, class: "form-control quantity-input", min: 0 %>
+                    <%= form.submit 'Update', class: "btn btn-outline-secondary btn-sm" %>
+                  <% end %>
                 </div>
                 <div>
-                  <%# <%= button_to 'Update', update_product_path(product_id: selected_product.product.id), class: "btn btn-outline-secondary btn-sm" %> %>
-                  <%= link_to 'Remove', "#", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary btn-sm" %>
+                  <%= form_with model: selected_product, url: selected_product_path(selected_product), method: :delete, local: true do |form| %>
+                    <%= form.submit 'Remove', class: "btn btn-outline-secondary btn-sm", data: { confirm: 'Are you sure?' } %>
+                  <% end %>
                 </div>
               </div>
             </div>

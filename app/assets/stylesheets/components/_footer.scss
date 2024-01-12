@@ -1,5 +1,5 @@
 .footer {
-  background: #F4F4F4;
+  background-color: #111;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,34 +25,38 @@
 }
 
 
-.footer .fa-github {
-  color: #0e3f0e;
+.footer-links i {
+  color: #038554;
 
+}
+
+.footer-copyright {
+  color: #038554;
 }
 
 /* Instagram */
-.footer .fa-instagram {
+/* .footer .fa-instagram {
   color: #0e3f0e;
-}
+} */
 
 /* Facebook */
-.footer .fa-facebook {
+/* .footer .fa-facebook {
   color: #0e3f0e;
 
-}
+} */
 
 /* Twitter */
-.footer  .fa-twitter {
+/* .footer  .fa-twitter {
   color: #0e3f0e;
 }
-
+ */
 /* LinkedIn */
-.footer  .fa-linkedin {
+/* .footer  .fa-linkedin {
   color: #0e3f0e;
 
-}
+} */
 
-.footer .footer-copyright {
+/* .footer .footer-copyright {
 color: #0e3f0e;
 
-}
+} */

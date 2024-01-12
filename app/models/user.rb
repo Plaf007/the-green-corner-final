@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   def create_cart
-    self.cart = Cart.new
+    # cart = Cart.find_by(user_id: self)
+    self.cart = Cart.create if self.cart.nil?
   end
 end

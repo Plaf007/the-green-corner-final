@@ -15,10 +15,16 @@
 
   <body>
     <div class="body-background">
-      <%= render "shared/navbar" %>
-      <%= render "shared/flashes" %>
-      <%= yield %>
+      <div class="wrapper">
+        <div class="content">
+          <%= render "shared/navbar" %>
+          <%= render "shared/flashes" %>
+          <%= yield %>
+        </div>
+      </div>
     </div>
-    <%= render "shared/footer" %>
+    <div class="footer">
+        <%= render "shared/footer" %>
+    </div>
   </body>
 </html>

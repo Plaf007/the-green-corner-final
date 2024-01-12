@@ -17,6 +17,5 @@ class User < ApplicationRecord
   def create_cart
     # cart = Cart.find_by(user_id: self)
     self.cart = Cart.create if self.cart.nil?
-
   end
 end

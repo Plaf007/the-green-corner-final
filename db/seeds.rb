@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Order.destroy_all
+SelectedProduct.destroy_all
 Product.destroy_all
+Order.destroy_all
+Cart.destroy_all
 RecyclePoint.destroy_all
 User.destroy_all
 Address.destroy_all
@@ -18,7 +20,7 @@ user1 = User.create!(
   password: '123456',
   first_name: 'Leo',
   last_name: 'Diaz',
-  total_virtual_cash: 335.00
+  total_virtual_cash: 10000.00
 )
 file = URI.open("https://avatars.githubusercontent.com/u/142075557?v=4")
 user1.photo.attach(io: file, filename: "leo.png", content_type: "image/png")
@@ -30,7 +32,7 @@ user2 = User.create!(
   password: '123456',
   first_name: 'Antonio',
   last_name: 'Villalobos',
-  total_virtual_cash: 435.00
+  total_virtual_cash: 10000.00
 )
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1676405509/obzjnjjiruvajinkvmsl.jpg")
 user2.photo.attach(io: file, filename: "antonio.png", content_type: "image/png")
@@ -42,7 +44,7 @@ user3 = User.create!(
   password: '123456',
   first_name: 'Marco',
   last_name: 'Soria',
-  total_virtual_cash: 535.00
+  total_virtual_cash: 10000.00
 )
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1691789898/y5axo3cnuidqdr4p6cpj.jpg")
 user3.photo.attach(io: file, filename: "marco.png", content_type: "image/png")
@@ -52,9 +54,17 @@ puts "El usuario #{user3.first_name} se a creado correctamente"
 user4 = User.create!(
   email: 'curanderow@gmail.com',
   password: '123456',
-  )
+)
 
 # Addresses
+
+address1 = Address.create!(
+  details: "Avenida Revolución 1521, Col. Campestre, Ciudad de México, México",
+  latitude: 19.351739,
+  longitude: -99.190517,
+  addressable: user1
+)
+puts "La dirección del Usuario 1 se ha creado correctamente"
 
 address1 = Address.create!(
   details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
@@ -62,7 +72,7 @@ address1 = Address.create!(
   longitude: -77.0827831,
   addressable: user4
 )
-puts "La address #{address1} se ha creado correctamente"
+puts "La dirección del Usuario 4 se ha creado correctamente"
 
 # Recycle points
 
@@ -243,18 +253,3 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_749116-MLA69477867682_052023
 product12.photo.attach(io: file, filename: "mini_garden.png", content_type: "image/png")
 product12.save!
 puts "El producto #{product12.title} se a creado correctamente"
-
-# Cart
-
-cart = Cart.create!(user: user2)
-
-# Orders
-
-order1 = Order.create!(user: user1, status: 0, purchase_date: Date.today)
-# SelectedProduct.create!(selected_productable: cart, product: product12, quantity: 2, price: product1.price)
-# SelectedProduct.create!(selected_productable: order1, product: product12, quantity: 1, price: product2.price)
-
-product12.selected_products.create(selected_productable: cart, quantity: 2, price: product12.price)
-product12.selected_products.create(selected_productable: order1, quantity: 2, price: product12.price)
-
-puts "La order #{order1} se ha creado correctamente"

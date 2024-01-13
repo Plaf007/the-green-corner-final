@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :recycle_points
 
-  has_many :addresses, as: :addressable
+  has_one :address, as: :addressable
   has_many :reviews, as: :reviewable
   has_one_attached :photo
 

@@ -10,7 +10,7 @@ class SelectedProductsController < ApplicationController
       @selected_product.quantity += 1
     else
       @selected_product = @cart.selected_products.create(selected_productable: @cart)
-      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product, virtual_cash: @virtual_cash)
+      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product, virtual_cash: @product.virtual_cash)
     end
     if @selected_product.save
       redirect_to cart_path(@cart), notice: 'El producto se añadió a tu carrito correctamente.'

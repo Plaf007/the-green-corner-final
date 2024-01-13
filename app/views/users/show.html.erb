@@ -1,17 +1,20 @@
-<div class="container mt-5">
-  <div class="card">
-    <% if @user.photo.attached? %>
-      <%= image_tag @user.photo, class: "card-img-top" %>
-    <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
-      <p class="card-text">
-        <strong>Dirección:</strong> <%= @user.address %><br>
-        <strong>Correo:</strong> <%= mail_to @user.email %><br>
-        <strong>Virtual Cash:</strong> <%= number_to_currency(@user.virtual_cash) %>
-      </p>
-      <%= link_to 'Editar', edit_user_path(@user), class: "btn btn-primary" %>
-      <%= link_to 'Volver', users_path, class: "btn btn-secondary" %>
+<body class="pt-5">
+  <div class="container mt-5">
+    <div class="card">
+      <% if @user.photo.attached? %>
+        <%= image_tag @user.photo, class: "card-img-top", style: "width: 200px; height: 200px; object-fit: cover;" %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+        <p class="card-text">
+          <strong>Dirección:</strong> <%= @user.address.details %><br>
+          <strong>Correo:</strong> <%= mail_to @user.email %><br>
+          <strong>Virtual Cash:</strong> <%= number_to_currency(@user.total_virtual_cash) %>
+        </p>
+        <%= link_to "Mis pedidos", orders_path, class: "btn btn-primary btn-sm btn-custom" %>
+        <%= link_to 'Editar', edit_user_path(@user), class: "btn btn-primary" %>
+        <%= link_to 'Volver', users_path, class: "btn btn-secondary" %>
+      </div>
     </div>
   </div>
-</div>
+</body>

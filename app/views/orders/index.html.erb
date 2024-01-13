@@ -1,22 +1,23 @@
-<div class="container mt-4">
-  <h1 class="h1-cart text-center" style="text-shadow: 1px 1px 1px #000000;">Mis Órdenes</h1>
-</div>
 
-<div class="container mt-4">
-  <% @orders.each do |order| %>
-    <div class="card mb-3 card-hover shadow p-3 mb-5">
-      <div class="row g-0">
-        <div class="col-md-4 r">
-          <p>Número de orden: <%= order.id %></p>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Fecha de Compra: <%= order.purchase_date %></h5>
-            <p class="order-status">Estado: <%= display_order_status(order.status) %></p>
-            <%= link_to "Ver Detalles", order_path(order), class: "btn btn-primary btn-sm btn-custom" %>
+  <div class="container mt-5" style="margin-top: 70px;">
+    <h1 class="h1-cart text-center" style="text-shadow: 1px 1px 1px #000000;">Mis pedidos</h1>
+  </div>
+
+  <div class="container mt-5">
+    <% @orders.each do |order| %>
+      <div class="card mb-3 card-hover shadow p-3 mb-5">
+        <div class="row g-0">
+          <div class="col-md-4 r">
+            <p>Número de orden: <%= order.id %></p>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Fecha de Compra: <%= order.purchase_date %></h5>
+              <p class="order-status">Estado: <%= display_order_status(order.status) %></p>
+              <%= link_to "Ver Detalles", order_path(order), class: "btn btn-primary btn-sm btn-custom" %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>

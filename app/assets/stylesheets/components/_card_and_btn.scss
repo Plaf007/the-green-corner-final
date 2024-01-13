@@ -9,17 +9,22 @@
   background-color: #f0f0f0;
 }
 
-.btn-custom {
-  background-color: #345e34;
-  /* Un tono de verde claro */
-  border-color: #345e34;
-  color: #FFFFFF;
-  transition: background-color 1.0s, border-color 1.0s;
-}
 
 .btn-custom:hover {
   background-color: #FFFFFF;
-  border-color: #345e34;
+  border-color: #03bb85;
+  color:#03bb85;
+}
+
+.btn-custom {
+  font-size: 0.9em;
+  border-radius: 25px;
+  padding: 5px 10px;
+  background-color: #03bb85;
+    /* Un tono de verde claro */
+  border-color: #03bb85;
+  color: #FFFFFF;
+  transition: background-color 1.0s, border-color 1.0s;
 }
 
 .card-container {

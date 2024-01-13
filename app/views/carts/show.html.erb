@@ -1,16 +1,18 @@
-<div class="container">
-    <%= link_to "Back", products_path, class: "btn btn-outline-secondary btn-sm" %>
-</div>
-<div class="container mt-4 ">
+
+<div class="container content-user">
   <div class="row d-flex justify-content-center mt-3 rounded-2">
-    <h1 class="h1-cart text-center" style="text-shadow: 1px 1px 1px #000000;">Shopping cart</h1>
+    <h1 class="h1-cart text-center pt-5" style="text-shadow: 1px 1px 1px #000000;">Shopping cart</h1>
   </div>
   <div class="container mt-4 ">
     <h4 class="product-list-title">Products list</h2>
   </div>
-  <div class="container mt-3">
+  <div>
+    <%= link_to "Return to Products", products_path, class: "btn btn-return btn-m " %>
+    <%= link_to "Return Home", root_path, class: "btn btn-return btn-m my-2" %>
+  </div>
+  <div class="container mt-3 ">
     <% @cart.selected_products.each do |selected_product| %>
-      <div class="card mb-3 card-hover shadow p-3 mb-5">
+      <div class="card mb-3 rounded-4 custom-card-background shadow p-3">
         <div class="row g-0">
           <div class="col-md-4 r">
             <% if selected_product.product.photo.attached? %>
@@ -40,7 +42,7 @@
                   <%= form_with model: selected_product, url: carts_update_product_path(product: selected_product), method: :post, local: true do |form| %>
                    <%= form.hidden_field :_method, value: "put" %>
                     <%= form.number_field :quantity, class: "form-control quantity-input", min: 0 %>
-                    <%= form.submit 'Update', class: "btn btn-outline-secondary btn-sm" %>
+                    <%= form.submit 'Update', class: "btn btn-outline-secondary btn-sm mt-2" %>
                   <% end %>
                 </div>
                 <div>
@@ -57,9 +59,9 @@
   </div>
 
   <div class="d-flex justify-content-end">
-    <div class="text-end">
+    <div class="text-end pb-5">
       <h3 class="product-total-title">Total: <%= number_to_currency(@total_due) %></h3>
-      <%= button_to 'Place Order', orders_path, class: 'btn btn-primary btn-lg' %>
+      <%= button_to 'Place Order', orders_path, class: 'btn btn-return btn-lg' %>
     </div>
   </div>
 </div>

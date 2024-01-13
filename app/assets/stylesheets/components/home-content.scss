@@ -65,29 +65,11 @@ padding-bottom: 150px;
   text-overflow: ellipsis;
 }
 
-.ver-mas {
-  display: none;
-  color: #1d793a;
-}
-
-.btn-custom {
-  font-size: 0.9em;
-  border-radius: 25px;
-  padding: 5px 10px;
-
-}
-
 .card-body {
   position: relative;
 
 }
 
-.ver-mas {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-
-}
 html, body {
   height: 100%;
   margin: 0;
@@ -105,4 +87,19 @@ html, body {
 
 .footer {
   flex-shrink: 0;
+}
+
+.carousel-inner {
+  position: relative;
+}
+
+.carousel-inner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #caebd5 90%);
+  z-index: 2;
 }

@@ -20,7 +20,7 @@ user1 = User.create!(
   password: '123456',
   first_name: 'Leo',
   last_name: 'Diaz',
-  total_virtual_cash: 10000.00
+  total_virtual_cash: 1000.00
 )
 file = URI.open("https://avatars.githubusercontent.com/u/142075557?v=4")
 user1.photo.attach(io: file, filename: "leo.png", content_type: "image/png")
@@ -32,7 +32,7 @@ user2 = User.create!(
   password: '123456',
   first_name: 'Antonio',
   last_name: 'Villalobos',
-  total_virtual_cash: 10000.00
+  total_virtual_cash: 1000.00
 )
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1676405509/obzjnjjiruvajinkvmsl.jpg")
 user2.photo.attach(io: file, filename: "antonio.png", content_type: "image/png")
@@ -44,7 +44,7 @@ user3 = User.create!(
   password: '123456',
   first_name: 'Marco',
   last_name: 'Soria',
-  total_virtual_cash: 10000.00
+  total_virtual_cash: 1000.00
 )
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1691789898/y5axo3cnuidqdr4p6cpj.jpg")
 user3.photo.attach(io: file, filename: "marco.png", content_type: "image/png")

@@ -13,10 +13,8 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #b7e4c7;
+  background-color: #caebd5;
   background-size: 5%;
-  opacity: 30%;
-  /* Ajusta la opacidad según necesites */
   z-index: -1;
 }
 .content-home header h1,
@@ -37,7 +35,6 @@
       1px -1px 0 #000,
       -1px 1px 0 #000,
       1px 1px 0 #1d793a;
-    /* Color del borde */
 }
 
 .content-user {
@@ -91,9 +88,7 @@ padding-bottom: 150px;
   bottom: 10px;
 
 }
-html,
-
-body {
+html, body {
   height: 100%;
   margin: 0;
 }
@@ -110,5 +105,4 @@ body {
 
 .footer {
   flex-shrink: 0;
-  /* Esto asegura que el footer no se encoge */
 }

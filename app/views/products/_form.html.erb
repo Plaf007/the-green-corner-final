@@ -1,7 +1,7 @@
   <div class="container">
     <div class="row d-flex justify-content-center pb-5">
       <div class="col-12 offset-lg-3">
-        <div class="bg-white rounded p-3 shadow">
+        <div class="bg-white rounded p-3 rounded-4 custom-card-background card-shadow">
           <h3>Create a new product</h3>
           <%= simple_form_for @product do |f| %>
             <%= f.input :title, placeholder: 'Product' %>
@@ -12,7 +12,7 @@
             <%= f.input :price, placeholder: 1 %>
             <%= f.input :virtual_cash, placeholder: 1 %>
             <%= f.input :photo, as: :file, required: true %>
-            <%= f.submit class: 'btn btn-primary' %>
+            <%= f.submit class: 'btn btn-success' %>
           <% end %>
         </div>
       </div>

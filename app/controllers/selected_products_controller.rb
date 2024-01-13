@@ -9,8 +9,8 @@ class SelectedProductsController < ApplicationController
     if @selected_product
       @selected_product.quantity += 1
     else
-      @selected_product = @cart.selected_products.create(selected_productable: @product)
-      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product, virtual_cash: @virtual_cash, cart_id: @cart.id)
+      @selected_product = @cart.selected_products.create(selected_productable: @cart)
+      @selected_product.assign_attributes(quantity: 1, price: @product.price, product: @product, virtual_cash: @virtual_cash)
     end
     if @selected_product.save
       redirect_to cart_path(@cart), notice: 'El producto se añadió a tu carrito correctamente.'
@@ -20,12 +20,11 @@ class SelectedProductsController < ApplicationController
   end
 
   def update_quantity
-    @cart = current_user.cart
-    @selected_product = @cart.selected_products.find(params[:product].to_i)
+    @selected_product = SelectedProduct.find_by(id: params[:product].to_i)
     new_quantity = params[:selected_product][:quantity].to_i
     if new_quantity.positive?
       @selected_product.update(quantity: new_quantity)
-      flash[:notice] = "Se actualizó la cantidad del producto seleccionado."
+      flash[:notice] = "Se actualizó la cantidad del producto seleccionado en tu #{parent_model_name(@selected_product)}."
     else
       @selected_product.destroy
       flash[:notice] = "Se quitó el producto de tu #{parent_model_name(@selected_product)}."
@@ -59,6 +58,10 @@ class SelectedProductsController < ApplicationController
   end
 
   def cart_or_order_path(selected_product)
-    selected_product.selected_productable_type == 'Order' ? order_path(selected_product.order_id) : cart_path(selected_product.cart_id)
+    if selected_product.selected_productable_type == 'Order'
+      order_path(selected_product.selected_productable_id)
+    else
+      cart_path(selected_product.selected_productable_id)
+    end
   end
 end

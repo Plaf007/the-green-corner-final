@@ -4,7 +4,7 @@
         <div class="bg-white rounded p-3 shadow">
           <h3>Create a new product</h3>
           <%= simple_form_for @product do |f| %>
-            <%= f.input :title, placeholder: 'Product' %>
+            <%= f.input :title, placeholder: 'Producto', label: "Nombre" %>
             <%= f.input :details, placeholder: "Add details here..." %>
             <%= f.input :description, placeholder: "Add your description here..." %>
             <%= f.input :category, collection: Product.categories.keys%>

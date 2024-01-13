@@ -18,8 +18,9 @@ class OrdersController < ApplicationController
       if @order.save
         @cart.selected_products.update_all(
           selected_productable_type: 'Order',
-          selected_productable_id: @order.id
+          selected_productable_id: @order.id,
         )
+        selected_product = @order.selected_products.last
         @cart.destroy
 
         redirect_to order_path(@order), notice: 'La orden se creó correctamente.'

@@ -30,7 +30,7 @@ class SelectedProductsController < ApplicationController
       @selected_product.destroy
       flash[:notice] = "Se quitó el producto de tu #{parent_model_name(@selected_product)}."
     end
-
+    current_user.cart.update(discount_amount: 0)
     redirect_to cart_or_order_path(@selected_product)
   end
 
@@ -43,7 +43,7 @@ class SelectedProductsController < ApplicationController
     else
       flash[:alert] = "No se encontró el producto."
     end
-
+    current_user.cart.update(discount_amount: 0)
     redirect_to cart_or_order_path(@selected_product)
   end
 

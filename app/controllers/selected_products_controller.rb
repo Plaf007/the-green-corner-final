@@ -1,5 +1,6 @@
 class SelectedProductsController < ApplicationController
   before_action :authenticate_user!
+  include SharedFunctionality
 
   def create
     @product = Product.find(params[:product_id])

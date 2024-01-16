@@ -1,33 +1,13 @@
-<div class="container mt-3 position-relative ">
-  <div class="row">
-    <div class="col-12">
-       <h1 class="title-card">
-        Find the product you want
-        <i class="fas fa-heart" style="font-size: 25px"></i>
-      </h1>
 
-    </div>
+
+<div class="container content-top">
+  <div class=" text-center pb-5">
+    <h2>Productos</h2>
   </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <% if @query %>
-        <p>You searched for <strong><%= @query %></strong>. We found <%= @products.count %> products out of our <%= Product.count %> on our website.</p>
-      <% else %>
-        <p>All <%= Product.count %> products.</p>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div class="container pt-3">
   <% if user_signed_in? %>
     <%= link_to "Add a Product", new_product_path, class: "btn btn-danger mb-1" %>
   <% end %>
 </div>
-
 <div class="container pt-1">
     <%= link_to "Return Home", root_path, class: "btn btn-return btn-m" %>
 </div>

@@ -10,18 +10,20 @@
   </button>
 
 
-    <div class="row justify-content-center">
+  <div class="row justify-content-center ">
     <div class="col-sm-8 my-3 w-100">
-      <%= form_with url: products_path, method: :get, class: "d-flex" do %>
+      <%= form_with url: products_path, method: :get, class: "d-flex search-bar" do %>
         <%= text_field_tag :query,
               params[:query],
               class: "form-control col-8",
-              placeholder: "Type a product"
-          %>
-        <%= submit_tag "Search", name: "", class: "btn btn-secondary"  %>
+              placeholder: "Busca un producto"%>
+        <%= button_tag(type: 'submit', class: "btn btn-light", name: "") do %>
+          <i class="fa fa-search" style="color: black;"></i>
+        <% end %>
       <% end %>
     </div>
   </div>
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
@@ -30,10 +32,10 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Products", products_path, class: "nav-link" %>
+            <%= link_to "Productos", products_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Cart", "/carts/:id", class: "nav-link" %>
+            <%= link_to "Carrito de compra", "/carts/:id", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.attached?%>
@@ -42,9 +44,9 @@
               <%= image_tag "empty_user.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Orders", "/orders", class: "dropdown-item" %>
-              <%= link_to link_to "Profile", "/users/#{current_user.id}", class: "dropdown-item" %>
-              <%= link_to "Log out",  destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+              <%= link_to "Ordenes", "/orders", class: "dropdown-item" %>
+              <%= link_to link_to "Perfil de usuario", "/users/#{current_user.id}", class: "dropdown-item" %>
+              <%= link_to "Cerrar sesión",  destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
           </li>
           <% else %>

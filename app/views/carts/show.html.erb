@@ -1,14 +1,9 @@
-
 <div class="container content-user">
   <div class="row d-flex justify-content-center mt-3 rounded-2">
-    <h1 class="h1-cart text-center pt-5" style="text-shadow: 1px 1px 1px #000000;">Shopping cart</h1>
-  </div>
-  <div class="container mt-4 ">
-    <h4 class="product-list-title">Products list</h2>
+    <h1 class="h1-cart text-center pt-5" style="text-shadow: 1px 1px 1px #000000;">Carrito de compras</h1>
   </div>
   <div>
-    <%= link_to "Return to Products", products_path, class: "btn btn-return btn-m " %>
-    <%= link_to "Return Home", root_path, class: "btn btn-return btn-m my-2" %>
+    <%= link_to "Ver más productos", products_path, class: "btn btn-return btn-m " %>
   </div>
   <div class="container mt-3 ">
     <% @cart.selected_products.each do |selected_product| %>
@@ -26,7 +21,7 @@
               <h5 class="card-title"><%= selected_product.product.title %></h5>
               <p class="product-description"><%= selected_product.product.description %></p>
               <p class="card-text">
-                <small class="text-muted">Part number: <%= selected_product.product.id %></small>
+                <small class="text-muted">No. de inventario: <%= selected_product.product.id %></small>
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -41,13 +36,13 @@
                   <label for="quantity-<%= selected_product.id %>" class="text-muted">Cantidad:</label>
                   <%= form_with model: selected_product, url: carts_update_product_path(product: selected_product), method: :post, local: true do |form| %>
                    <%= form.hidden_field :_method, value: "put" %>
-                    <%= form.number_field :quantity, class: "form-control quantity-input", min: 0 %>
-                    <%= form.submit 'Update', class: "btn btn-outline-secondary btn-sm mt-2" %>
+                   <%= form.number_field :quantity, class: "form-control quantity-input", min: 0 %>
+                   <%= form.submit 'Actualizar cantidad', class: "btn btn-outline-secondary btn-sm mt-2" %>
                   <% end %>
                 </div>
                 <div>
                   <%= form_with model: selected_product, url: selected_product_path(selected_product), method: :delete, local: true do |form| %>
-                    <%= form.submit 'Remove', class: "btn btn-outline-secondary btn-sm", data: { confirm: 'Are you sure?' } %>
+                    <%= form.submit 'Quitar producto', class: "btn btn-outline-secondary btn-sm", data: { confirm: 'Are you sure?' } %>
                   <% end %>
                 </div>
               </div>
@@ -58,10 +53,37 @@
     <% end %>
   </div>
 
+<div class="container mt-3">
+  <div class="card mb-3 p-3">
+    <h5 class="card-title">Saldo de Green Money</h5>
+    <p class="card-text">
+      Tu saldo Green Money actual es de <%= number_to_currency(current_user.total_virtual_cash) %>.
+    </p>
+  </div>
+
+  <%= form_with(model: @cart, url: apply_discount_cart_path, method: :post, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :discount_amount, "¿Cuánto Green Money quieres utilizar? (Máximo: $#{@max_discount})" %>
+      <%= form.hidden_field :_method, value: "put" %>
+      <%= form.number_field :discount_amount, class: "form-control", step: "any"%>
+    </div>
+    <%= form.submit "Aplicar descuento", class: "btn btn-primary btn-sm" %>
+  <% end %>
+</div>
   <div class="d-flex justify-content-end">
     <div class="text-end pb-5">
-      <h3 class="product-total-title">Total: <%= number_to_currency(@total_due) %></h3>
-      <%= button_to 'Place Order', orders_path, class: 'btn btn-return btn-lg' %>
+      <h3 class="product-total-title">
+        Total: <%= number_to_currency(@cart.total_due) %>
+      </h3>
+      <%= button_to 'Comprar', orders_path, class: 'btn btn-return btn-lg' %>
     </div>
   </div>
+  <div class="container mt-3">
+  <div class="card p-3">
+    <h5 class="card-title">Green Money proporcionado</h5>
+    <p class="card-text">
+      Esta compra proporcionará <%= number_to_currency(@total_virtual_cash) %> en Green Money.
+    </p>
+  </div>
+</div>
 </div>

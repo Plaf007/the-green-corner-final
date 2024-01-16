@@ -36,4 +36,9 @@ Rails.application.routes.draw do
 
   post "carts/update_product", to: "selected_products#update_quantity"
   post "orders/update_product", to: "selected_products#update_quantity"
+  resources :carts do
+    member do
+      post 'apply_discount', to: 'carts#apply_discount'
+    end
+  end
 end

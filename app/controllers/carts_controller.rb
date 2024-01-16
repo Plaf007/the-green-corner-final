@@ -27,6 +27,6 @@ class CartsController < ApplicationController
     else
       flash[:alert] = "La cantidad introducida debe ser mayor a 0 y menor a #{@cart.total_due + @cart.discount_amount}."
     end
-    redirect_to cart_path(current_user.cart)
+    redirect_to cart_path(@cart)
   end
 end

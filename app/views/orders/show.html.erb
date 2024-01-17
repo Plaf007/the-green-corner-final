@@ -2,7 +2,7 @@
   <%= link_to "Regresar a productos", products_path, class: "btn btn-outline-secondary btn-sm" %>
 </div>
 
-<div class="container mt-3">
+<div class="container mt-1">
   <h4 class="order-number">Número de pedido: <%= @order.id %></h4>
   <p class="order-status">Estado: <%= display_order_status(@order.status) %></p>
 

@@ -6,6 +6,7 @@ class SelectedProductsController < ApplicationController
     @product = Product.find(params[:product_id])
     @cart = current_user.cart || current_user.create_cart
     @selected_product = @cart.selected_products.find_by(product: @product)
+    @cart.update(discount_amount: 0)
 
     if @selected_product
       @selected_product.quantity += 1

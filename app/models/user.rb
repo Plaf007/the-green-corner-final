@@ -18,4 +18,8 @@ class User < ApplicationRecord
     # cart = Cart.find_by(user_id: self)
     self.cart = Cart.create if self.cart.nil?
   end
+
+  def update_virtual_cash(discount, gain)
+    update(total_virtual_cash: total_virtual_cash - discount + gain)
+  end
 end

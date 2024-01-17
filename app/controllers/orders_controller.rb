@@ -14,17 +14,17 @@ class OrdersController < ApplicationController
       redirect_to cart_path(@cart)
     else
       @order = Order.new(user: current_user, status: 0, purchase_date: Date.today)
-
+      @order.update(total_due: @cart.total_due, virtual_cash: @cart.total_virtual_cash)
       if @order.save
         @cart.selected_products.update_all(
           selected_productable_type: 'Order',
-          selected_productable_id: @order.id,
+          selected_productable_id: @order.id
         )
-        selected_product = @order.selected_products.last
+        current_user.update_virtual_cash(@cart.discount_amount, @cart.total_virtual_cash)
         @cart.destroy
-
         redirect_to order_path(@order), notice: 'La orden se creó correctamente.'
       else
+        @order.destroy
         redirect_to cart_path, alert: 'No se logró crear la orden.'
       end
     end
@@ -33,8 +33,8 @@ class OrdersController < ApplicationController
   def show
     @order = current_user.orders.find(params[:id])
     @selected_products = @order.selected_products.includes(:product)
-    @total_due = calculate_total_due(@selected_products)
-    @total_virtual_cash = calculate_total_virtual_cash(@selected_products)
+    @subtotal_due = calculate_total_due(@selected_products)
+    @virtual_cash_spent = @subtotal_due - @order.total_due
   end
 
   helper_method :display_order_status

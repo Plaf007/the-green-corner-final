@@ -66,7 +66,7 @@ address1 = Address.create!(
 )
 puts "La dirección del Usuario 1 se ha creado correctamente"
 
-address1 = Address.create!(
+address4 = Address.create!(
   details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
   latitude: -12.0789164,
   longitude: -77.0827831,

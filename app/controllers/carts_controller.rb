@@ -6,7 +6,7 @@ class CartsController < ApplicationController
   def show
     @cart = current_user.cart || current_user.create_cart
     @selected_products = @cart.selected_products.includes(:product)
-    @total_virtual_cash = calculate_total_virtual_cash(@selected_products)
+    @cart.update(total_virtual_cash: calculate_total_virtual_cash(@selected_products))
     @subtotal_due = calculate_total_due(@selected_products)
     @max_discount = [current_user.total_virtual_cash, @subtotal_due].min
     @cart.update(total_due: calculate_total_due(@selected_products) - @cart.discount_amount)

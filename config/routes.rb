@@ -21,15 +21,9 @@ Rails.application.routes.draw do
     resources :selected_products, only: [:index, :new, :create]
   end
 
-  # resources :carts do
-    # resources :selected_products, only: [:index, :new, :create]
-  # end
-
-  resources :recycle_points do
-    resources :addresses, only: [:index, :new, :create]
-    resources :reviews, only: [:index, :new, :create]
-  end
-
+  resources :recycle_points
+  resources :reviews, only: [:index, :new, :create]
+  resources :addresses
   resources :selected_products
   resources :carts
   resources :orders

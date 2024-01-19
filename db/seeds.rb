@@ -13,6 +13,33 @@ RecyclePoint.destroy_all
 User.destroy_all
 Address.destroy_all
 
+# Recycle points & addresses
+
+addresses = [
+  { details: 'Sta Genoveva 426c, Puente Piedra 15122, Perú', latitude: -11.840852845957572, longitude: -77.10222033558207 },
+  { details: 'Av. Arequipa 265, Lima 15046, Perú', latitude: -12.067516908251026, longitude: -77.03563387116411 },
+  { details: 'Av. Alfredo Mendiola 5810, Lima 15311, Perú', latitude: -11.964941191752642, longitude: -77.06716581349235 },
+  { details: 'Av Industrial 3484, Independencia 15311, Perú', latitude: -11.993062851019046, longitude: -77.05886719206123 },
+  { details: 'Av. Industrial 8032, Comas 15314, Perú', latitude: -11.93278924757652, longitude: -77.07144871534354 }
+]
+
+addresses.each { |address| Address.create!(address) }
+
+puts "Se crearon las direcciones para los puntos de reciclaje"
+
+recycle_points = [
+  { name: 'Puente Piedra', category: 1, description: 'Acepta materiales plásticos para reciclaje', address_id: 1 },
+  { name: 'Comas', category: 2, description: 'Centro de reciclaje de papel y cartón', address_id: 2 },
+  { name: 'Los Olivos', category: 3, description: 'Instalación de reciclaje de metal', address_id: 3 },
+  { name: 'Independencia', category: 1, description: 'Especializado en reciclaje de residuos plásticos', address_id: 4 },
+  { name: 'Comimtel Recycling', category: 4, description: 'Servicios de reciclaje en general', address_id: 5 }
+]
+
+recycle_points.each { |point| RecyclePoint.create!(point) }
+
+puts "Se crearon los puntos de reciclaje"
+
+
 # Users
 
 user1 = User.create!(
@@ -73,15 +100,6 @@ address4 = Address.create!(
   addressable: user4
 )
 puts "La dirección del Usuario 4 se ha creado correctamente"
-
-# Recycle points
-
-recycle_point1 = RecyclePoint.create!(
-  category: 1,
-  name: "punto1",
-  description: "Primer punto",
-)
-puts "El punto de reciclaje #{recycle_point1} se ha creado correctamente"
 
 # Products
 

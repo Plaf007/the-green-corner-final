@@ -1,0 +1,35 @@
+<div class="container content-top">
+  <div class="text-center pb-5">
+    <h2>Puntos de Reciclaje</h2>
+  </div>
+</div>
+
+<div class="container pt-1">
+  <%= link_to "Volver a la Página Principal", root_path, class: "btn btn-return btn-m" %>
+</div>
+
+<div class="container pt-3">
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 mb-3">
+      <div id="map" style="height: 400px;"></div>
+
+      <script>
+        var map = L.map('map').setView(<%= @initial_view %>, 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        <% @recycle_points.each do |recycle_point| %>
+          var marker = L.marker([<%= recycle_point.address.latitude %>, <%= recycle_point.address.longitude %>])
+            .bindPopup("<%= escape_javascript(link_to(recycle_point.name, recycle_point_path(recycle_point))) %>")
+            .addTo(map);
+
+          marker.on('click', function () {
+            window.location.href = "<%= recycle_point_path(recycle_point) %>";
+          });
+        <% end %>
+      </script>
+    </div>
+  </div>
+</div>

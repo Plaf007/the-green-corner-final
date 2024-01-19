@@ -15,30 +15,74 @@ Address.destroy_all
 
 # Recycle points & addresses
 
-addresses = [
-  { details: 'Sta Genoveva 426c, Puente Piedra 15122, Perú', latitude: -11.840852845957572, longitude: -77.10222033558207 },
-  { details: 'Av. Arequipa 265, Lima 15046, Perú', latitude: -12.067516908251026, longitude: -77.03563387116411 },
-  { details: 'Av. Alfredo Mendiola 5810, Lima 15311, Perú', latitude: -11.964941191752642, longitude: -77.06716581349235 },
-  { details: 'Av Industrial 3484, Independencia 15311, Perú', latitude: -11.993062851019046, longitude: -77.05886719206123 },
-  { details: 'Av. Industrial 8032, Comas 15314, Perú', latitude: -11.93278924757652, longitude: -77.07144871534354 }
-]
+recycle_point1 = RecyclePoint.create!(
+  name: 'Puente Piedra',
+  category: 1,
+  description: 'Acepta materiales plásticos para reciclaje'
+)
 
-addresses.each { |address| Address.create!(address) }
+recycle_point2 = RecyclePoint.create!(
+  name: 'Comas',
+  category: 2,
+  description: 'Centro de reciclaje de papel y cartón'
+)
 
-puts "Se crearon las direcciones para los puntos de reciclaje"
+recycle_point3 = RecyclePoint.create!(
+  name: 'Los Olivos',
+  category: 3,
+  description: 'Instalación de reciclaje de metal'
+)
 
-recycle_points = [
-  { name: 'Puente Piedra', category: 1, description: 'Acepta materiales plásticos para reciclaje', address_id: 1 },
-  { name: 'Comas', category: 2, description: 'Centro de reciclaje de papel y cartón', address_id: 2 },
-  { name: 'Los Olivos', category: 3, description: 'Instalación de reciclaje de metal', address_id: 3 },
-  { name: 'Independencia', category: 1, description: 'Especializado en reciclaje de residuos plásticos', address_id: 4 },
-  { name: 'Comimtel Recycling', category: 4, description: 'Servicios de reciclaje en general', address_id: 5 }
-]
+recycle_point4 = RecyclePoint.create!(
+  name: 'Independencia',
+  category: 1,
+  description: 'Especializado en reciclaje de residuos plásticos'
+)
 
-recycle_points.each { |point| RecyclePoint.create!(point) }
+recycle_point5 = RecyclePoint.create!(
+  name: 'Comimtel Recycling',
+  category: 4,
+  description: 'Servicios de reciclaje en general'
+)
 
 puts "Se crearon los puntos de reciclaje"
 
+address1 = Address.create!(
+  details: 'Sta Genoveva 426c, Puente Piedra 15122, Perú',
+  latitude: -11.840852845957572,
+  longitude: -77.10222033558207,
+  addressable: recycle_point1
+)
+
+address2 = Address.create!(
+  details: 'Av. Arequipa 265, Lima 15046, Perú',
+  latitude: -12.067516908251026,
+  longitude: -77.03563387116411,
+  addressable: recycle_point2
+)
+
+address3 = Address.create!(
+  details: 'Av. Alfredo Mendiola 5810, Lima 15311, Perú',
+  latitude: -11.964941191752642,
+  longitude: -77.06716581349235,
+  addressable: recycle_point3
+)
+
+address4 = Address.create!(
+  details: 'Av Industrial 3484, Independencia 15311, Perú',
+  latitude: -11.993062851019046,
+  longitude: -77.05886719206123,
+  addressable: recycle_point4
+)
+
+address5 = Address.create!(
+  details: 'Av. Industrial 8032, Comas 15314, Perú',
+  latitude: -11.93278924757652,
+  longitude: -77.07144871534354,
+  addressable: recycle_point5
+)
+
+puts "Se crearon las direcciones de los puntos de reciclaje"
 
 # Users
 
@@ -83,9 +127,9 @@ user4 = User.create!(
   password: '123456',
 )
 
-# Addresses
+# Addresses para usuarios
 
-address1 = Address.create!(
+address6 = Address.create!(
   details: "Avenida Revolución 1521, Col. Campestre, Ciudad de México, México",
   latitude: 19.351739,
   longitude: -99.190517,
@@ -93,7 +137,7 @@ address1 = Address.create!(
 )
 puts "La dirección del Usuario 1 se ha creado correctamente"
 
-address4 = Address.create!(
+address7 = Address.create!(
   details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
   latitude: -12.0789164,
   longitude: -77.0827831,

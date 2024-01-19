@@ -4,6 +4,13 @@ class RecyclePointsController < ApplicationController
   def index
     @recycle_points = RecyclePoint.all
     @recycle_points_coordinates = @recycle_points.map { |point| point.address.coordinates }
+
+    # Calculate average coordinates for the initial view
+    total_points = @recycle_points_coordinates.length
+    average_latitude = @recycle_points_coordinates.sum { |point| point[0] } / total_points
+    average_longitude = @recycle_points_coordinates.sum { |point| point[1] } / total_points
+
+    @initial_view = [average_latitude, average_longitude]
   end
 
   def show

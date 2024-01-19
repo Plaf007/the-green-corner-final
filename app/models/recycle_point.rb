@@ -11,21 +11,19 @@ class RecyclePoint < ApplicationRecord
   validates_associated :address
 
   def full_address
-    "#{name} - #{category_label}, #{description}. Ubicado en #{address.details}"
+    "#{name} - #{category_label}, #{description}"
   end
-
-  private
 
   def category_label
     case category
     when 1
-      'Reciclaje de Plástico'
+      'plásticos'
     when 2
-      'Reciclaje de Papel'
+      'papel y cartón'
     when 3
-      'Reciclaje de Metal'
+      'aluminio y otros metales'
     else
-      'Reciclaje General'
+      'reciclables en general'
     end
   end
 end

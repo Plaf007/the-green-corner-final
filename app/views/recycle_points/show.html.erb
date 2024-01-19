@@ -1,0 +1,42 @@
+<div class="container content-top">
+  <div class="text-center pb-5">
+    <h2><%= @recycle_point.name %></h2>
+  </div>
+</div>
+
+<div class="container pt-1">
+  <%= link_to "Volver a la Página Principal", root_path, class: "btn btn-return btn-m" %>
+  <%= link_to "Volver al mapa general", recycle_points_path, class: "btn btn-return btn-m" %>
+</div>
+
+<div class="container pt-3">
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 mb-3">
+      <div id="map" style="height: 400px;"></div>
+
+      <script>
+        var map = L.map('map').setView([<%= @recycle_point.address.latitude %>, <%= @recycle_point.address.longitude %>], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker = L.marker([<%= @recycle_point.address.latitude %>, <%= @recycle_point.address.longitude %>])
+          .bindPopup("<%= escape_javascript("#{@recycle_point.name}") %>")
+          .addTo(map)
+          .openPopup();
+      </script>
+    </div>
+  </div>
+</div>
+
+<div class="container pt-3">
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 mb-3">
+      <h3>Punto de reciclaje <%= @recycle_point.name %></h3>
+      <p></strong> <%= @recycle_point.description %></p>
+      <p><strong>Categoría:</strong> <%= @recycle_point.category %>, ideal para <%= @recycle_point.category_label %></p>
+      <p><strong>Dirección:</strong> <%= @recycle_point.address.details %></p>
+    </div>
+  </div>
+</div>

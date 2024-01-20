@@ -96,6 +96,7 @@ user1 = User.create!(
 file = URI.open("https://avatars.githubusercontent.com/u/142075557?v=4")
 user1.photo.attach(io: file, filename: "leo.png", content_type: "image/png")
 user1.save!
+Address.last.destroy
 puts "El usuario #{user1.first_name} se a creado correctamente"
 
 user2 = User.create!(
@@ -108,6 +109,7 @@ user2 = User.create!(
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1676405509/obzjnjjiruvajinkvmsl.jpg")
 user2.photo.attach(io: file, filename: "antonio.png", content_type: "image/png")
 user2.save!
+Address.last.destroy
 puts "El usuario #{user2.first_name} se a creado correctamente"
 
 user3 = User.create!(
@@ -120,12 +122,8 @@ user3 = User.create!(
 file = URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1691789898/y5axo3cnuidqdr4p6cpj.jpg")
 user3.photo.attach(io: file, filename: "marco.png", content_type: "image/png")
 user3.save!
+Address.last.destroy
 puts "El usuario #{user3.first_name} se a creado correctamente"
-
-user4 = User.create!(
-  email: 'curanderow@gmail.com',
-  password: '123456',
-)
 
 # Addresses para usuarios
 
@@ -135,23 +133,26 @@ address6 = Address.create!(
   longitude: -99.190517,
   addressable: user1
 )
-puts "La dirección del Usuario 1 se ha creado correctamente"
+puts "La dirección de Leo se ha creado correctamente"
+p address6
 
-address3 = Address.create!(
-  details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
-  latitude: -12.0789164,
-  longitude: -77.0827831,
-  addressable: user3
-)
-puts "La dirección del Usuario 4 se ha creado correctamente"
-
-address2 = Address.create!(
+address7 = Address.create!(
   details: "Avenida Simón Bolivar 2549, Ñuñoa, Santiago, Chile",
   latitude: -33.4498521,
   longitude: -70.6044052,
   addressable: user2
 )
-puts "La dirección del Usuario 4 se ha creado correctamente"
+puts "La dirección de Antonio se ha creado correctamente"
+p address7
+
+address8 = Address.create!(
+  details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
+  latitude: -12.0789164,
+  longitude: -77.0827831,
+  addressable: user3
+)
+puts "La dirección de Marco se ha creado correctamente"
+p address8
 
 # Products
 

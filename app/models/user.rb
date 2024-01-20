@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :reviews, as: :reviewable
   has_one_attached :photo
 
-  after_commit :create_address
+  after_create :create_address
 
   def create_cart
     # cart = Cart.find_by(user_id: self)
@@ -28,6 +28,8 @@ class User < ApplicationRecord
   end
 
   def create_address
+    return if address.present?
+
     Address.create(
       details: "Edita tu perfil para agregar una dirección",
       addressable: self

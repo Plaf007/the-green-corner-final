@@ -12,6 +12,7 @@
           <%= f.input :quantity, placeholder: 1, label: "Cantidad disponible" %>
           <%= f.input :price, placeholder: 1, label: "Precio" %>
           <%= f.input :virtual_cash, placeholder: 1, label: "Green Money que proporciona" %>
+          <%= image_tag @product.photo, :size => "300x300" %>
           <%= f.input :photo, as: :file, required: true, label: "Foto (Sube una imagen)" %>
           <%= f.submit "Guardar cambios", class: 'btn btn-success' %>
         <% end %>

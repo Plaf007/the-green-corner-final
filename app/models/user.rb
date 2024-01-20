@@ -10,9 +10,13 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :recycle_points
 
-  has_one :address, as: :addressable
+  has_one :address, as: :addressable, dependent: :destroy
+  accepts_nested_attributes_for :address
+
   has_many :reviews, as: :reviewable
   has_one_attached :photo
+
+  after_commit :create_address
 
   def create_cart
     # cart = Cart.find_by(user_id: self)
@@ -21,5 +25,12 @@ class User < ApplicationRecord
 
   def update_virtual_cash(discount, gain)
     update(total_virtual_cash: total_virtual_cash - discount + gain)
+  end
+
+  def create_address
+    Address.create(
+      details: "Edita tu perfil para agregar una dirección",
+      addressable: self
+    )
   end
 end

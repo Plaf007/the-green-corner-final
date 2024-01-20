@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @review = Review.new(reviewable: @user)
-    @address = Address.new(addressable: @user)
   end
 
   def new
@@ -24,13 +22,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    @user.build_address if @user.address.nil?  # Esto construirá una dirección si no existe
   end
 
   def update
+    @user = User.find(params[:id])
+
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :total_virtual_cash, :photo)
+    params.require(:user).permit(:first_name, :last_name, :password, :total_virtual_cash, :photo, address_attributes: [:details])
   end
 end

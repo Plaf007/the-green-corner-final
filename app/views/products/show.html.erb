@@ -1,5 +1,9 @@
 <div class="container content-center show-products">
-  <%= link_to "Regresar a productos", products_path, class: "btn btn-return btn-m" %>
+  <% if current_user.id == @product.user_id %>
+    <%= link_to "Regresar a mis productos", my_products_path, class: "btn btn-return btn-m" %>
+  <% else %>
+    <%= link_to "Regresar a productos", products_path, class: "btn btn-return btn-m" %>
+  <% end %>
 
   <div class="row shadow p-3 mt-5 mb-5 bg-white rounded-4 custom-card-background card-shadow">
     <div class="col-md-6 d-flex justify-content-center align-items-center">
@@ -16,13 +20,13 @@
       <p><strong>Descripción:</strong> <%= @product.description %></p>
       <p><strong>Categoría:</strong> <%= @product.category %></p>
       <p><strong>Precio:</strong> <%= number_to_currency(@product.price) %></p>
-      <p><strong>Es producto proporciona </strong> <%= @product.virtual_cash %> en Green Money</p>
+      <p><strong>Es producto proporciona </strong> <%= number_to_currency(@product.virtual_cash) %> en Green Money</p>
 
       <div class="col-md-6">
         <% if current_user.id == @product.user_id %>
           <p>Tú eres el vendedor de este producto</p>
           <%= link_to "Editar", edit_product_path(@product), class: "btn btn-return btn-custom mb-2" %>
-          <%= link_to "Quitar", product_path(@product),
+          <%= link_to "Eliminar", product_path(@product),
               data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro?" },
               class: "btn btn-return btn-danger btn-custom mb-2" %>
         <% end %>

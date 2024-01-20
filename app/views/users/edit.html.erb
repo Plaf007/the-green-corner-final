@@ -1,20 +1,25 @@
 <div class="container content-user">
-    <div class="row d-flex justify-content-center">
-      <div class="col-12 offset-lg-3">
-        <div class="container d-flex justify-content-start my-4">
-          <%= link_to "Return to profile", user_path, class: "btn btn-return btn-m" %>
-        </div>
-        <div class="bg-white  p-3 rounded-4 custom-card-background card-shadow">
-          <h3>Edit your profile</h3>
-          <%= simple_form_for @user do |f| %>
-            <%= f.input :first_name, placeholder: 'Name' %>
-            <%= f.input :last_name, placeholder: "Last name" %>
-            <%= f.input :email, placeholder: "Email" %>
-             <%= f.input :address, placeholder: "Address" %>
-            <%= f.input :photo, as: :file, required: true %>
-            <%= f.submit class: 'btn btn-custom'%>
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 offset-lg-3">
+      <div class="container d-flex justify-content-start my-4">
+        <%= link_to "Return to profile", user_path, class: "btn btn-return btn-m" %>
+      </div>
+      <div class="bg-white p-3 rounded-4 custom-card-background card-shadow">
+        <h3>Edita tu perfil</h3>
+        <%= simple_form_for @user do |f| %>
+          <%= f.input :first_name, label: "Nombre", placeholder: "Nombre" %>
+          <%= f.input :last_name, label: "Apellido", placeholder: "Apellido" %>
+          <%= f.input :email, label: "Email", placeholder: "Email" %>
+          <%= f.fields_for :address do |address_fields| %>
+            <%= address_fields.input :details, label: "Dirección" %>
           <% end %>
-        </div>
+          <% if @user.photo.present? %>
+              <%= image_tag @user.photo, :size => "300x300" %>
+          <% end %>
+          <%= f.input :photo, as: :file, required: true, label: "Fotografía" %>
+          <%= f.submit class: 'btn btn-custom' %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>

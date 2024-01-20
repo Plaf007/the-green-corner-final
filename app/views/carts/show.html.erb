@@ -70,7 +70,7 @@
           <%= form.hidden_field :_method, value: "put" %>
           <%= form.number_field :discount_amount, class: "form-control", step: "any", value: @cart.discount_amount || 0 %>
         </div>
-        <%= form.submit "Aplicar descuento", class: "btn btn-primary btn-sm" %>
+        <%= form.submit "Aplicar descuento", class: "btn btn-custom btn-sm" %>
       <% end %>
     </div>
 

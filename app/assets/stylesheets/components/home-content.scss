@@ -95,9 +95,7 @@ html, body {
   flex-shrink: 0;
 }
 
-.carousel-inner-home {
-  position: relative;
-}
+
 
 .carousel-inner-home::after {
   content: '';
@@ -113,19 +111,25 @@ html, body {
 .about-us-section {
   position: relative;
   background-image: url('banner_about_us.png');
-  background-attachment: fixed;
-  background-position: center center;
-  height: 300px;
+  /* Ruta de tu imagen de fondo */
   background-size: cover;
+  background-attachment: fixed;
+  /* Esto hace que la imagen de fondo se quede fija */
+  background-position: center center;
+  height: 200px;
+  padding-top: 200px;
 }
 
 .about-us-text {
   top: 0;
   right: 0;
-  width: 60%;
-  color: #000000;
-  background-color: rgba(146, 233, 153, 0.575);
-  padding: 200px;
+  width: 40%;
+  /* O el ancho que prefieras para el texto */
+  color: #333;
+  /* Color del texto */
+  background-color: rgba(255, 255, 255, 0.7);
+  /* Fondo semitransparente para el texto */
+  padding: 20px;
   height: 100%;
   /* Asegura que el texto cubra toda la altura de la sección de About Us */
 }

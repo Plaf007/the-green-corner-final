@@ -1,23 +1,20 @@
 
 <div>
    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner-home">
+    <div class="carousel-inner carousel-inner-home">
        <div class="carousel-item active">
         <img src="https://res.cloudinary.com/dyptqsblk/image/upload/v1704646699/banner1_pr5l4w.png" class="d-flex justify-content-center w-100" alt="...">
       </div>
     </div>
 
   </div>
-<div class="card-container">
+<div class="card-container content-user">
   <section class="my-5">
-    <div class="card-container-fluid mx-3 content-user">
+    <div class="card-container-fluid mx-3">
       <div class=" text-center pb-3">
         <h2>Productos Destacados</h2>
       </div>
-      <div class="container-fluid pb-3">
-        <%= link_to "Productos", products_path, class: "btn btn-return btn-m " %>
-      </div>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center bt-5">
 
         <% @products.last(8).each do |product| %>
           <div class="col-md-3 mb-4 rounded-4 custom-card-background card-hover mx-2 g-0">
@@ -37,14 +34,13 @@
         <% end %>
 
       </div>
-
-    </div>
-    <div class="about-us-section  content-session">
+      <div class="about-us-section">
         <div class="about-us-text position-absolute  p-4">
           <h3>Acerca de Nosotros</h3>
           <p>Conoce más sobre nuestra misión y los valores que impulsan nuestra empresa. Estamos comprometidos con la sostenibilidad y la calidad en todos nuestros productos.</p>
         </div>
       </div>
+    </div>
 
   </section>
 

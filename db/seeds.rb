@@ -137,11 +137,19 @@ address6 = Address.create!(
 )
 puts "La dirección del Usuario 1 se ha creado correctamente"
 
-address7 = Address.create!(
+address3 = Address.create!(
   details: "Avenida Universitaria 832, San Miguel, Lima, Peru",
   latitude: -12.0789164,
   longitude: -77.0827831,
-  addressable: user4
+  addressable: user3
+)
+puts "La dirección del Usuario 4 se ha creado correctamente"
+
+address2 = Address.create!(
+  details: "Avenida Simón Bolivar 2549, Ñuñoa, Santiago, Chile",
+  latitude: -33.4498521,
+  longitude: -70.6044052,
+  addressable: user2
 )
 puts "La dirección del Usuario 4 se ha creado correctamente"
 

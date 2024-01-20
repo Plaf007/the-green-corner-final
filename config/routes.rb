@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :orders
 
+  get 'my_products', to: 'products#my_products'
   post "carts/update_product", to: "selected_products#update_quantity"
   post "orders/update_product", to: "selected_products#update_quantity"
   resources :carts do

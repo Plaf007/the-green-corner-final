@@ -47,7 +47,8 @@
               <%= image_tag "empty_user.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Ordenes", "/orders", class: "dropdown-item" %>
+              <%= link_to "Mis productos", my_products_path, class: "dropdown-item" %>
+              <%= link_to "Mis órdenes", "/orders", class: "dropdown-item" %>
               <%= link_to link_to "Perfil de usuario", "/users/#{current_user.id}", class: "dropdown-item" %>
               <%= link_to "Cerrar sesión",  destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
@@ -57,10 +58,13 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Products", products_path, class: "nav-link" %>
+            <%= link_to "Productos", products_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Puntos de reciclaje", recycle_points_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Inicia sesión", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>

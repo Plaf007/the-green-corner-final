@@ -57,6 +57,24 @@
 
   <% if !@cart.selected_products.empty? %>
     <div class="container mt-3">
+      <div class="card mb-3 p-3">
+        <h5 class="card-title">Saldo de Green Money</h5>
+        <p class="card-text">
+          Tu saldo Green Money actual es de <%= number_to_currency(current_user.total_virtual_cash) %>.
+        </p>
+      </div>
+
+      <%= form_with(model: @cart, url: apply_discount_cart_path, method: :post, local: true) do |form| %>
+        <div class="mb-3">
+          <%= form.label :discount_amount, "¿Cuánto Green Money quieres utilizar? (Máximo: $#{@max_discount})" %>
+          <%= form.hidden_field :_method, value: "put" %>
+          <%= form.number_field :discount_amount, class: "form-control", step: "any", value: @cart.discount_amount || 0 %>
+        </div>
+        <%= form.submit "Aplicar descuento", class: "btn btn-primary btn-sm" %>
+      <% end %>
+    </div>
+
+    <div class="container mt-3">
       <div class="card p-3">
         <h5 class="card-title">Green Money proporcionado</h5>
         <p class="card-text">
@@ -73,6 +91,5 @@
         <%= button_to 'Comprar', orders_path, class: 'btn btn-return btn-lg' %>
       </div>
     </div>
-    <%= form.submit "Aplicar descuento", class: "btn" %>
   <% end %>
 </div>

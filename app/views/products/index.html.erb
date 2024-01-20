@@ -1,16 +1,19 @@
 
-<div class="maincarouselproduct" >
+<div class="container-fluid g-0 maincarouselproducts">
   <div class="row">
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <%= image_tag "sustainablewatch.jpg", class: "d-block w-100", :size => "1600x500" %>
+      <%= image_tag "sustainablewatch.jpg", class: "card d-block border-0 w-100 imgcarousel" %>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <%= image_tag "solarenergydevice.webp", class: "card d-block border-0 w-100 imgcarousel" %>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <%= image_tag "sustainablecoffee.jpg", class: "card d-block border-0 w-100 imgcarousel" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "naturesoap.webp", class: "card d-block border-0 w-100 imgcarousel" %>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -25,18 +28,6 @@
 
   </div>
 
-</div>
-
-<div class="container mt-2">
-  <div class=" text-center pb-5">
-    <h2>Productos</h2>
-  </div>
-  <% if user_signed_in? %>
-    <%= link_to "Crear Producto", new_product_path, class: "btn btn-danger mb-1" %>
-  <% end %>
-</div>
-<div class="container pt-1">
-    <%= link_to "Return Home", root_path, class: "btn btn-return btn-m" %>
 </div>
 
 <div class="container pt-3">

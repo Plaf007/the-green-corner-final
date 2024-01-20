@@ -13,6 +13,9 @@
               <strong>Correo:</strong> <%= mail_to @user.email %><br>
               <strong>Virtual Cash:</strong> <%= number_to_currency(@user.total_virtual_cash) %>
             </p>
+            <% if user_signed_in? %>
+                <%= link_to "Crear Producto", new_product_path, class: "btn btn-primary btn-sm btn-custom" %>
+            <% end %>
             <%= link_to "Mis pedidos", orders_path, class: "btn btn-primary btn-sm btn-custom" %>
             <%= link_to 'Editar', edit_user_path(@user), class: "btn btn-custom" %>
             <%= link_to 'Volver', root_path, class: "btn btn-return btn-m" %>

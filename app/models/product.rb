@@ -1,12 +1,12 @@
 class Product < ApplicationRecord
   enum category: {
-    plastic: 0,
-    glass: 1,
-    wood: 2,
-    aluminium: 3,
-    wasteElectrical: 4,
-    compostable: 5,
-    others: 6
+    plastico: 0,
+    vidrio: 1,
+    madera: 2,
+    aluminio: 3,
+    electricos: 4,
+    organicos: 5,
+    otros: 6
   }
 
   belongs_to :user

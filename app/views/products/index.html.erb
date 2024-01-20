@@ -40,15 +40,12 @@
                       <%= hidden_field_tag :product_id, product.id %>
                       <%=  f.submit "Añadir al carro" , class: "btn btn-custom"%>
                     <% end  %>
-
                   <% end  %>
-
-                    <% else %>
-                      <div class=" pt-1">
-                        <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-custom" %>
-                      </div>
-                    <% end %>
-
+                <% else %>
+                  <div class=" pt-1">
+                    <%= link_to "Sign in to Add to Cart", new_user_session_path, class: "btn btn-custom" %>
+                    </div>
+                <% end %>
               </div>
         </div>
       </div>

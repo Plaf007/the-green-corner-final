@@ -30,10 +30,6 @@
                     <span class="text-muted"><%= number_to_currency(selected_product.price) %></span>
                   </div>
                   <div>
-                    <label class="text-muted">Total:</label>
-                    <span class="text-muted"><%= number_to_currency(selected_product.calculate_total_due([selected_product])) %></span>
-                  </div>
-                  <div>
                     <label for="quantity-<%= selected_product.id %>" class="text-muted">Cantidad:</label>
                     <%= form_with model: selected_product, url: carts_update_product_path(product: selected_product), method: :post, local: true do |form| %>
                      <%= form.hidden_field :_method, value: "put" %>
@@ -45,6 +41,10 @@
                     <%= form_with model: selected_product, url: selected_product_path(selected_product), method: :delete, local: true do |form| %>
                       <%= form.submit 'Quitar producto', class: "btn btn-outline-secondary btn-sm", data: { confirm: 'Are you sure?' } %>
                     <% end %>
+                  </div>
+                  <div>
+                    <label class="text-muted">Total:</label>
+                    <span class="text-muted"><%= number_to_currency(selected_product.calculate_total_due([selected_product])) %></span>
                   </div>
                 </div>
               </div>

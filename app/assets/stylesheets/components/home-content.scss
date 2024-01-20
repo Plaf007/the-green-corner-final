@@ -95,11 +95,11 @@ html, body {
   flex-shrink: 0;
 }
 
-.carousel-inner {
+.carousel-inner-home {
   position: relative;
 }
 
-.carousel-inner::after {
+.carousel-inner-home::after {
   content: '';
   position: absolute;
   bottom: 0;

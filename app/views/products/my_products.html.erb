@@ -3,6 +3,9 @@
     <h1 class="h1-cart text-center pt-5" style="text-shadow: 1px 1px 1px #000000;">Mis productos</h1>
   </div>
   <div class="container pt-3">
+    <div class=" col-9 container pb-3 pt-3">
+      <%= link_to "Regresar a la página principal", root_path, class: "btn btn-return btn-sm bg-white" %>
+    </div>
     <div class="row justify-content-center pb-5">
       <% @my_products.each do |product| %>
         <div class="col-3 mb-3 rounded-4 custom-card-background card-hover mx-2 g-0">

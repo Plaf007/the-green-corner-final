@@ -3,7 +3,6 @@
   <div class="row d-flex justify-content-center pb-5">
     <div class="col-12 offset-lg-3">
       <div class="bg-white rounded p-3 rounded-4 custom-card-background card-shadow">
-        <h3>Editar el producto</h3>
         <%= simple_form_for @product do |f| %>
           <%= f.input :title, placeholder: 'Producto', label: "Nombre" %>
           <%= f.input :details, placeholder: "Agregar detalles aquí...", label: "Detalles" %>
@@ -16,7 +15,7 @@
             <%= image_tag @product.photo, size: "300x300" %>
           <% end %>
           <%= f.input :photo, as: :file, required: true, label: "Foto (Sube una imagen)" %>
-          <%= f.submit "Guardar cambios", class: 'btn btn-success' %>
+          <%= f.submit "Guardar cambios", class: 'btn btn-custom' %>
         <% end %>
       </div>
     </div>

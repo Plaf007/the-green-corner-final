@@ -41,6 +41,11 @@
       1px 1px 0 #1d793a;
 }
 
+.content-about-us {
+  padding-top: 150px;
+  padding-bottom: 50px;
+}
+
 .content-user {
 padding-top: 150px;
 padding-bottom: 150px;
@@ -116,6 +121,7 @@ html, body {
   background-position: center center;
   height: 200px;
   border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .about-us-text {
@@ -127,4 +133,6 @@ html, body {
   padding: 20px;
   height: 100%;
   font-size: 14px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }

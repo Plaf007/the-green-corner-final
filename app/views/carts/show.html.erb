@@ -2,7 +2,9 @@
   <div class="row d-flex justify-content-center mt-3 rounded-2">
     <h1 class="h1-cart text-center pt-5" style="text-shadow: 1px 1px 1px #000000;">Carrito de compras</h1>
   </div>
-
+  <div class=" col-12 container pb-3 pt-3 justify-content-center">
+    <%= link_to "Volver", my_products_path, class: "btn btn-return btn-sm bg-white" %>
+  </div>
   <div class="container mt-3 ">
     <% if @cart.selected_products.empty? %>
       <p class="text-center">No has agregado ningún producto al carrito</p>

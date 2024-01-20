@@ -111,25 +111,20 @@ html, body {
 .about-us-section {
   position: relative;
   background-image: url('banner_about_us.png');
-  /* Ruta de tu imagen de fondo */
   background-size: cover;
   background-attachment: fixed;
-  /* Esto hace que la imagen de fondo se quede fija */
   background-position: center center;
   height: 200px;
-  padding-top: 200px;
+  border-radius: 15px;
 }
 
 .about-us-text {
   top: 0;
   right: 0;
-  width: 40%;
-  /* O el ancho que prefieras para el texto */
-  color: #333;
-  /* Color del texto */
-  background-color: rgba(255, 255, 255, 0.7);
-  /* Fondo semitransparente para el texto */
+  width: 55%;
+  color: #ffffff;
+  background-color: #1d793a63;
   padding: 20px;
   height: 100%;
-  /* Asegura que el texto cubra toda la altura de la sección de About Us */
+  font-size: 14px;
 }

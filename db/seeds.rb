@@ -259,8 +259,8 @@ puts "El producto #{product5.title} se a creado correctamente"
 review9 = Review.create!(rating: 5, comment: "Es de muy fácil armado", reviewable: product5)
 review10 = Review.create!(rating: 5, comment: "Cada uno de los miembros de mi hogar lo adoran", reviewable: product5)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review9 se a creado correctamente"
+puts "La review10 se a creado correctamente"
 
 product6 = Product.new(
   title: 'Bolsas De Basura Biodegradable',
@@ -277,11 +277,11 @@ product6.photo.attach(io: file, filename: "bolsas_de_basura.png", content_type: 
 product6.save!
 puts "El producto #{product6.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 3, comment: "Un precio algo elevado para el numero de bolsas", reviewable: product6)
-review2 = Review.create!(rating: 5, comment: "Las bolsas son muy resistentes", reviewable: product6)
+review11 = Review.create!(rating: 3, comment: "Un precio algo elevado para el numero de bolsas", reviewable: product6)
+review12 = Review.create!(rating: 5, comment: "Las bolsas son muy resistentes", reviewable: product6)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review11 se a creado correctamente"
+puts "La review12 se a creado correctamente"
 
 product7 = Product.new(
   title: 'Set Envoltorio Reutilizable Algodón Y Cera De Abeja',
@@ -298,11 +298,11 @@ product7.photo.attach(io: file, filename: "envoltorio_compostable.png", content_
 product7.save!
 puts "El producto #{product7.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 5, comment: "Los alimentos se conservan en excelente estado", reviewable: product7)
-review2 = Review.create!(rating: 5, comment: "Tienen una vida útil extendida", reviewable: product7)
+review13 = Review.create!(rating: 5, comment: "Los alimentos se conservan en excelente estado", reviewable: product7)
+review14 = Review.create!(rating: 4, comment: "Tienen una vida útil extendida", reviewable: product7)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review13 se a creado correctamente"
+puts "La review14 se a creado correctamente"
 
 
 product8 = Product.new(
@@ -320,11 +320,11 @@ product8.photo.attach(io: file, filename: "chocolate_semi_bitter.png", content_t
 product8.save!
 puts "El producto #{product8.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product8)
-review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product8)
+review15 = Review.create!(rating: 5, comment: "Se siente el buen nivel de cacao del chocolate", reviewable: product8)
+review16 = Review.create!(rating: 5, comment: "Uno de los mejores chocolates del mercado", reviewable: product8)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review15 se a creado correctamente"
+puts "La review16 se a creado correctamente"
 
 
 product9 = Product.new(
@@ -342,11 +342,11 @@ product9.photo.attach(io: file, filename: "leche_coco.png", content_type: "image
 product9.save!
 puts "El producto #{product9.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product9)
-review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product9)
+review17 = Review.create!(rating: 5, comment: "Consumo el producto a diario", reviewable: product9)
+review18 = Review.create!(rating: 5, comment: "El sabor es estupendo, es mi favorita", reviewable: product9)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review17 se a creado correctamente"
+puts "La review18 se a creado correctamente"
 
 
 product10 = Product.new(
@@ -364,11 +364,11 @@ product10.photo.attach(io: file, filename: "hisopos_algodon.png", content_type: 
 product10.save!
 puts "El producto #{product10.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product10)
-review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product10)
+review19 = Review.create!(rating: 3, comment: "Buen producto pero algo costoso", reviewable: product10)
+review20 = Review.create!(rating: 5, comment: "Los hisopos tienen un buen diseño y son resistentes", reviewable: product10)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review19 se a creado correctamente"
+puts "La review20 se a creado correctamente"
 
 
 product11 = Product.new(
@@ -386,11 +386,11 @@ product11.photo.attach(io: file, filename: "hilo_dental.png", content_type: "ima
 product11.save!
 puts "El producto #{product11.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product11)
-review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product11)
+review21 = Review.create!(rating: 5, comment: "Es mucho mejor que las marcas convencionales", reviewable: product11)
+review22 = Review.create!(rating: 5, comment: "Es durable y tiene buen sabor", reviewable: product11)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review21 se a creado correctamente"
+puts "La review22 se a creado correctamente"
 
 
 product12 = Product.new(
@@ -408,8 +408,8 @@ product12.photo.attach(io: file, filename: "mini_garden.png", content_type: "ima
 product12.save!
 puts "El producto #{product12.title} se a creado correctamente"
 
-review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product12)
-review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product12)
+review23 = Review.create!(rating: 4, comment: "Tiene alta resistencia", reviewable: product12)
+review24 = Review.create!(rating: 5, comment: "Me gusta mucho el diseño del producto", reviewable: product12)
 
-puts "La review1 se a creado correctamente"
-puts "La review2 se a creado correctamente"
+puts "La review23 se a creado correctamente"
+puts "La review24 se a creado correctamente"

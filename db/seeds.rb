@@ -170,6 +170,13 @@ file = URI.open("https://res.cloudinary.com/dyptqsblk/image/upload/v1702602003/c
 product1.photo.attach(io: file, filename: "calcetines_bamboo.png", content_type: "image/png")
 product1.save!
 puts "El producto #{product1.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "Los calcetines estan hechos de un material que los hace muy cómodos", reviewable: product1)
+review2 = Review.create!(rating: 4, comment: "Tienen una alta durabilidad", reviewable: product1)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
 product2 = Product.new(
   title: 'Toallita Húmeda 99.9% Agua Biodegradables',
   description: 'Cada toallita está hecha de tela hipoalergénica de fibras de bamboo con aceites esenciales. Estas wipes son orgánicas, hipoalergénicas, compostables en casa y 100% biodegradables. Libres de químicos nocivos y alcohol. Además, traen en su empaque una tapa dispensadora que las hace super cómodas para cambiar a tu bebé',
@@ -184,6 +191,14 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_830568-MLC53827511681_022023
 product2.photo.attach(io: file, filename: "calcetines_bamboo.png", content_type: "image/png")
 product2.save!
 puts "El producto #{product2.title} se a creado correctamente"
+
+review3 = Review.create!(rating: 5, comment: "Toallitas para toda ocacion", reviewable: product2)
+review4 = Review.create!(rating: 5, comment: "El envase debería traer más toallitas", reviewable: product2)
+
+puts "La review3 se a creado correctamente"
+puts "La review4 se a creado correctamente"
+
+
 product3 = Product.new(
   title: 'Compostera',
   description: 'Para que reciclen gran parte de sus desechos y produzcan su propio abono. Incluye : Vermicompostera, Manual PDF con todos los cuidados',
@@ -198,6 +213,13 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_920366-MLC40345636342_012020
 product3.photo.attach(io: file, filename: "compostera.png", content_type: "image/png")
 product3.save!
 puts "El producto #{product3.title} se a creado correctamente"
+
+review5 = Review.create!(rating: 5, comment: "La compostera tiene un acabado moderno", reviewable: product3)
+review6 = Review.create!(rating: 5, comment: "La madera es de alta calidad", reviewable: product3)
+
+puts "La review5 se a creado correctamente"
+puts "La review6 se a creado correctamente"
+
 product4 = Product.new(
   title: 'Cepillos de dientes de bamboo',
   description: 'Pack 12 unidades cepillo de dientes bamboo cerdas de fibra de carbón. Ecológico, biodegradable.',
@@ -212,6 +234,13 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_978507-MLC43947713256_102020
 product4.photo.attach(io: file, filename: "cepillo_bamboo.png", content_type: "image/png")
 product4.save!
 puts "El producto #{product4.title} se a creado correctamente"
+
+review7 = Review.create!(rating: 4, comment: "Es algo caro pero es muy bonito", reviewable: product4)
+review8 = Review.create!(rating: 5, comment: "Mi dentista me lo ha recomendado", reviewable: product4)
+
+puts "La review7 se a creado correctamente"
+puts "La review8 se a creado correctamente"
+
 product5 = Product.new(
   title: 'Zapatero Y Banco De bamboo',
   description: 'Zapatero y banco de bamboo, el producto viene separado en partes, con instrucciones para su armado',
@@ -226,6 +255,13 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_637746-MLC69202031360_052023
 product5.photo.attach(io: file, filename: "zapatero_bamboo.png", content_type: "image/png")
 product5.save!
 puts "El producto #{product5.title} se a creado correctamente"
+
+review9 = Review.create!(rating: 5, comment: "Es de muy fácil armado", reviewable: product5)
+review10 = Review.create!(rating: 5, comment: "Cada uno de los miembros de mi hogar lo adoran", reviewable: product5)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
 product6 = Product.new(
   title: 'Bolsas De Basura Biodegradable',
   description: 'Bolsa de Basura Ecológica Pequeña para Escritorio o Baño. 100 unidades por rollo. 37 x 51 cms.',
@@ -240,6 +276,13 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_936496-MLC50512378463_062022
 product6.photo.attach(io: file, filename: "bolsas_de_basura.png", content_type: "image/png")
 product6.save!
 puts "El producto #{product6.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 3, comment: "Un precio algo elevado para el numero de bolsas", reviewable: product6)
+review2 = Review.create!(rating: 5, comment: "Las bolsas son muy resistentes", reviewable: product6)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
 product7 = Product.new(
   title: 'Set Envoltorio Reutilizable Algodón Y Cera De Abeja',
   description: 'Envoltorios de tela de algodón con cera de abeja que permite envolver fuentes o alimentos para mantener su condición. Son reutilizables y una vez que pierden su vida útil los puedes compostar.',
@@ -254,6 +297,14 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_803057-MLC43207227180_082020
 product7.photo.attach(io: file, filename: "envoltorio_compostable.png", content_type: "image/png")
 product7.save!
 puts "El producto #{product7.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "Los alimentos se conservan en excelente estado", reviewable: product7)
+review2 = Review.create!(rating: 5, comment: "Tienen una vida útil extendida", reviewable: product7)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
+
 product8 = Product.new(
   title: 'Chocolate Semi Bitter 63% Cacao',
   description: 'Chocolate en lenteja. Apto para el consumo de personas veganas.',
@@ -268,6 +319,14 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_900168-MLU69556144104_052023
 product8.photo.attach(io: file, filename: "chocolate_semi_bitter.png", content_type: "image/png")
 product8.save!
 puts "El producto #{product8.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product8)
+review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product8)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
+
 product9 = Product.new(
   title: 'Leche De Coco Orgánica 400 Ml',
   description: 'Leche de coco, obtenida a partir de cocos frescos.',
@@ -282,6 +341,14 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_773426-MLU72427328853_102023
 product9.photo.attach(io: file, filename: "leche_coco.png", content_type: "image/png")
 product9.save!
 puts "El producto #{product9.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product9)
+review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product9)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
+
 product10 = Product.new(
   title: 'Hisopos De Algodón Con Varita De Bambú',
   description: 'Hechas de algodón y madera de bambú, biodegradables y compostables.',
@@ -296,6 +363,14 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_916689-MLC69202339538_052023
 product10.photo.attach(io: file, filename: "hisopos_algodon.png", content_type: "image/png")
 product10.save!
 puts "El producto #{product10.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product10)
+review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product10)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
+
 product11 = Product.new(
   title: 'Hilo Dental Dobakaru Origen Vegetal',
   description: 'Hilo Dental 100% PLA (origen vegetal) con cera de candelilla y Xylitol natural, sabor a menta.',
@@ -310,6 +385,14 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_749116-MLA69477867682_052023
 product11.photo.attach(io: file, filename: "hilo_dental.png", content_type: "image/png")
 product11.save!
 puts "El producto #{product11.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product11)
+review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product11)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"
+
+
 product12 = Product.new(
   title: 'Minigarden Para Huerta Vertical Y Muro Verde',
   description: 'Fabricado en polipropileno copolímero de alta resistencia y contiene aditivos que proporcionan protección UV.',
@@ -324,3 +407,9 @@ file = URI.open("https://http2.mlstatic.com/D_NQ_NP_749116-MLA69477867682_052023
 product12.photo.attach(io: file, filename: "mini_garden.png", content_type: "image/png")
 product12.save!
 puts "El producto #{product12.title} se a creado correctamente"
+
+review1 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product12)
+review2 = Review.create!(rating: 5, comment: "excelente producto", reviewable: product12)
+
+puts "La review1 se a creado correctamente"
+puts "La review2 se a creado correctamente"

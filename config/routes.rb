@@ -29,4 +29,8 @@ Rails.application.routes.draw do
       post 'apply_discount', to: 'carts#apply_discount'
     end
   end
+
+
+  post "process_payment", to: "payments#process_payment"
+  resources :payments
 end

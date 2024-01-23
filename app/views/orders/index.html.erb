@@ -1,11 +1,11 @@
 
-  <div class="container mt-5" style="margin-top: 70px;">
+  <div class="container content-orders" style="margin-top: 70px;">
     <h1 class="h1-cart text-center" style="text-shadow: 1px 1px 1px #000000;">Mis pedidos</h1>
   </div>
 
-  <div class="container mt-5">
+  <div class="container">
     <% @orders.each do |order| %>
-      <div class="card mb-3 card-hover shadow p-3 mb-5">
+      <div class="card card-hover shadow p-3 mb-5">
         <div class="row g-0">
           <div class="col-md-4 r">
             <p>Número de orden: <%= order.id %></p>

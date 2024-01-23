@@ -1,8 +1,8 @@
 <div class="container content-center show-products">
   <% if current_user.id == @product.user_id %>
-    <%= link_to "Regresar a mis productos", my_products_path, class: "btn btn-return btn-m" %>
+    <%= link_to "Volver", :back, class: "btn btn-return btn-m" %>
   <% else %>
-    <%= link_to "Regresar a productos", products_path, class: "btn btn-return btn-m" %>
+    <%= link_to "Volver", :back, class: "btn btn-return btn-m" %>
   <% end %>
 
   <div class="row shadow p-3 mt-5 mb-5 bg-white rounded-4 custom-card-background card-shadow">

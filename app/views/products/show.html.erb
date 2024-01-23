@@ -19,7 +19,7 @@
       <p><strong>Es producto proporciona </strong> <%= @product.virtual_cash %> en Green Money</p>
 
       <div class="col-md-6">
-        <% if current_user.id == @product.user_id %>
+        <% if current_user&.id == @product.user_id %>
           <p>Tú eres el vendedor de este producto</p>
           <%= link_to "Editar", edit_product_path(@product), class: "btn btn-return btn-custom mb-2" %>
           <%= link_to "Quitar", product_path(@product),
@@ -27,7 +27,7 @@
               class: "btn btn-return btn-danger btn-custom mb-2" %>
         <% end %>
 
-        <% if current_user.id != @product.user_id && user_signed_in? %>
+        <% if current_user&.id != @product.user_id && user_signed_in? %>
           <form action="/selected_products" method="POST" data-turbo="false">
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <%= hidden_field_tag :product_id, @product.id %>
@@ -60,7 +60,7 @@
         <% end %>
       <% end %>
 
-      <% if current_user.id != @product.user_id %>
+      <% if current_user&.id != @product.user_id %>
         <h5>Agrega una reseña para este producto</h5>
         <%= simple_form_for [@product, Review.new] do |f| %>
           <%= f.input :comment, placeholder: "Agrega tu reseña aquí..." %>

@@ -1,4 +1,36 @@
+<div class="container mt-5">
+  <div id=“statusScreenBrick_container”></div>
+  <script>
+      const mp = new MercadoPago( "TEST-310b287b-df9a-4de6-8eba-9cb1d253601a", {
+          locale: "en-US"
+      });
+      const bricksBuilder = mp.bricks();
+      const renderStatusScreenBrick = async (bricksBuilder) => {
+          const settings = {
+              initialization: {
+                  paymentId: "pagado", // valor del procesamiento a realizar
+              },
+              callbacks: {
+                  onReady: () => {
+                      // callback llamado cuando Brick está listo
+                  },
+                  onError: (error) => {
+                      // callback llamado para todos los casos de error de Brick
+                  },
+              },
+              customization: {
+                  visual: {
+                      showExternalReference: true
+                  }
+              }
+          };
+          window.statusScreenBrickController = await bricksBuilder.create("statusScreen", "statusScreenBrick_container", settings);
+      };
+      renderStatusScreenBrick(bricksBuilder);
+  </script>
+  <%# <%= link_to ‘Go to bookings’, bookings_path, class: “btn btn-dark mt-4 rounded-3” %>
 
+</div>
   <div class="container content-orders" style="margin-top: 70px;">
     <h1 class="h1-cart text-center" style="text-shadow: 1px 1px 1px #000000;">Mis pedidos</h1>
   </div>

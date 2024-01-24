@@ -1,12 +1,11 @@
 <div class="container mt-5">
 <div id="cardPaymentBrick_container">
 </div>
-<%= "Valor de MP_ENV: #{ENV['MP_ENV']}" %>
-<%= console %>
+
 <script>
 
 // token de prueba
-    const mp = new MercadoPago("PEGA AQUI TU API PUBLIC DE MP", {
+    const mp = new MercadoPago("TEST-310b287b-df9a-4de6-8eba-9cb1d253601a", {
         locale: 'en-US'
     });
     const bricksBuilder = mp.bricks();

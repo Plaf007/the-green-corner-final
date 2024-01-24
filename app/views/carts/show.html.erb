@@ -90,7 +90,7 @@
         <h3 class="product-total-title">
           Total: <%= number_to_currency(@cart.total_due) %>
         </h3>
-        <%= button_to 'Comprar', orders_path, class: 'btn btn-return btn-lg' %>
+        <%= link_to 'Pagar', new_cart_payment_path(@cart), class: 'btn btn-return btn-lg' %>
       </div>
     </div>
   <% end %>

@@ -21,7 +21,14 @@
           attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        var marker = L.marker([<%= @recycle_point.address.latitude %>, <%= @recycle_point.address.longitude %>])
+        var recycleIcon = L.icon({
+          iconUrl: '<%= asset_path("recycle-logo.png") %>',
+          iconSize: [32, 32],
+          iconAnchor: [16, 32],
+          popupAnchor: [0, -32]
+        });
+
+        var marker = L.marker([<%= @recycle_point.address.latitude %>, <%= @recycle_point.address.longitude %>], { icon: recycleIcon })
           .bindPopup("<%= escape_javascript("#{@recycle_point.name}") %>")
           .addTo(map)
           .openPopup();

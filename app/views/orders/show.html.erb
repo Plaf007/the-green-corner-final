@@ -73,23 +73,8 @@
 
 <div class="mb-5"></div>
 
-// SDK MercadoPago.js
+
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 
 
 <div class="cho-container"></div>
-<script>
-  const mp = new MercadoPago('TEST-310b287b-df9a-4de6-8eba-9cb1d253601a', {
-    locale: 'en-US'
-  });
-
-  mp.checkout({
-    preference: {
-      id: 1,
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Pagar',
-    }
-  });
-</script>

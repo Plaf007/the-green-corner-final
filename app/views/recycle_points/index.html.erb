@@ -20,8 +20,15 @@
           attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
+        var recycleIcon = L.icon({
+          iconUrl: '<%= asset_path("recycle-logo.png") %>',
+          iconSize: [32, 32],
+          iconAnchor: [16, 32],
+          popupAnchor: [0, -32]
+        });
+
         <% @recycle_points.each do |recycle_point| %>
-          var marker = L.marker([<%= recycle_point.address.latitude %>, <%= recycle_point.address.longitude %>])
+          var marker = L.marker([<%= recycle_point.address.latitude %>, <%= recycle_point.address.longitude %>], {icon: recycleIcon})
             .bindPopup("<%= escape_javascript(link_to(recycle_point.name, recycle_point_path(recycle_point))) %>")
             .addTo(map);
 

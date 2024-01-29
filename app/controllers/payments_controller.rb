@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
 
   def process_payment
     require 'mercadopago'
-    sdk = Mercadopago::SDK.new("TEST-6383646141679501-012016-1b9133c42c161f460ca677446d10504d-72535328")
+    sdk = Mercadopago::SDK.new("INSERT-PRIVATE-KEY")
     payment_data = {
       transaction_amount: params[:transaction_amount].to_f,
       token: params[:token],

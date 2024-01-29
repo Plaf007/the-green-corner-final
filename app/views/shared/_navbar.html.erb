@@ -51,6 +51,7 @@
               <%= link_to "Mis órdenes", "/orders", class: "dropdown-item" %>
               <%= link_to link_to "Perfil de usuario", "/users/#{current_user.id}", class: "dropdown-item" %>
               <%= link_to "Cerrar sesión",  destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+
             </div>
           </li>
           <% else %>
